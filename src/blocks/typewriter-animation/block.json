@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "typewriter-animation-block/typewriter-animation",
+  "title": "Typewriter Animation",
+  "category": "typewriter-animation-block",
+  "icon": "block-default",
+  "description": "A custom typewriter animation block",
+  "keywords": ["text, animation"],
+  "version": "1.0",
+  "textdomain": "typewriter-animation-block",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "example": {},
+  "attributes": {},
+  "supports": {
+    "align": false,
+    "alignWide": false,
+    "className": false,
+    "html": false
+  }
+}
