@@ -18,11 +18,6 @@
  * with Typewriter Animation Block; if not, see <https://www.gnu.org/licenses/>.
  */
 
-import { useBlockProps, InnerBlocks } from "@wordpress/block-editor";
-import { __ } from "@wordpress/i18n";
+import { store, getContext } from "@wordpress/interactivity";
 
-export default function SaveBlock({ attributes }) {
-  // Block props
-  const blockProps = useBlockProps.save();
-  return <div {...blockProps}>Typewriter animation block</div>;
-}
+console.log("hello world");
