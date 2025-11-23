@@ -22,3 +22,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  * You should have received a copy of the GNU General Public License along
  * with Typewriter Animation Block; if not, see <https://www.gnu.org/licenses/>.
  */
+
+?>
+
+<div data-wp-interactive="typewriter-animation">
+    Typewriter Animation
+</div>

@@ -20,4 +20,6 @@
 
 import { store, getContext } from "@wordpress/interactivity";
 
-console.log("hello world");
+store("typewriter-animation", {
+  callbacks: {},
+});
