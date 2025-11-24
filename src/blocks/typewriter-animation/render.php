@@ -26,5 +26,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <div data-wp-interactive="typewriter-animation">
-    Typewriter Animation
+    <h2 class="twab">Crafting something <span class="twab__animation-text">amazing</span><span class="twab__cursor">|</span></h2>
 </div>
