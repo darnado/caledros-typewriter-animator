@@ -36,6 +36,6 @@ $wp_context = [
 
 $wp_context_json = htmlspecialchars(json_encode($wp_context), ENT_QUOTES, 'UTF-8');
 ?>
-<div data-wp-interactive="typewriter-animation" data-wp-context='<?php echo esc_attr($wp_context_json);?>' data-wp-init--log="callbacks.onInit">
-    <h2 class="twab" id="<?php echo esc_attr($uniqueId); ?>">Crafting something <span class="twab__animation-text">amazing</span><span class="twab__cursor">|</span></h2>
+<div data-wp-interactive="typewriter-animation" data-wp-context='<?php echo esc_attr($wp_context_json);?>' data-wp-init="callbacks.onInit">
+    <h2 class="twab">Crafting something <span id="<?php echo esc_attr($uniqueId); ?>" class="twab__animation-text">amazing</span><span class="twab__cursor">|</span></h2>
 </div>

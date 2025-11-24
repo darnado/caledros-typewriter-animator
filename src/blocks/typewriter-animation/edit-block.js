@@ -23,11 +23,16 @@ import { useInstanceId } from "@wordpress/compose";
 import { __ } from "@wordpress/i18n";
 
 export default function EditBlock({ attributes, setAttributes }) {
+  // Get block attributes
   const { uniqueId, baseInstanceId } = attributes;
+
+  // Generate new ID
   const instanceId = useInstanceId(EditBlock);
 
+  // Check if block is duplicated
   const isDuplicate = baseInstanceId && baseInstanceId !== instanceId;
 
+  // Set new ID if block is new or duplicated
   if (!uniqueId || isDuplicate) {
     const newUniqueId = `twab-${instanceId}`;
     setAttributes({ uniqueId: newUniqueId, baseInstanceId: instanceId });
@@ -35,7 +40,6 @@ export default function EditBlock({ attributes, setAttributes }) {
 
   // Block props
   const blockProps = useBlockProps();
-
   return (
     <>
       <InspectorControls></InspectorControls>

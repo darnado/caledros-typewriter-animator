@@ -25,8 +25,35 @@ store("typewriter-animation", {
     onInit: () => {
       const context = getContext();
       const uniqueIdElement = `${context.uniqueId}`;
+      function waitAnimation(miliseconds) {
+        return new Promise((resolve) => setTimeout(resolve, miliseconds));
+      }
+      const typewriterPhrases = [
+        "incredible",
+        "engaging",
+        "unique",
+        "surprising",
+      ];
       const typewriterElement = document.getElementById(uniqueIdElement);
-      console.log(typewriterElement);
+
+      let waitTime = 100;
+      let currentPhraseIndex = 0;
+
+      const typewriterLoop = async () => {
+        while (true) {
+          let currentWord = typewriterPhrases[currentPhraseIndex];
+          for (let i = 0; i < currentWord.length; i++) {
+            typewriterElement.innerText = currentWord.substring(0, i + 1);
+            await waitAnimation(waitTime);
+          }
+          await waitAnimation(waitTime * 10);
+          for (let i = currentWord.length; i > 0; i--) {
+            typewriterElement.innerText = currentWord.substring(0, i - 1);
+            await waitAnimation(waitTime);
+          }
+        }
+      };
+      typewriterLoop();
     },
   },
 });
