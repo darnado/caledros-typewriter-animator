@@ -21,5 +21,12 @@
 import { store, getContext } from "@wordpress/interactivity";
 
 store("typewriter-animation", {
-  callbacks: {},
+  callbacks: {
+    onInit: () => {
+      const context = getContext();
+      const uniqueIdElement = `${context.uniqueId}`;
+      const typewriterElement = document.getElementById(uniqueIdElement);
+      console.log(typewriterElement);
+    },
+  },
 });

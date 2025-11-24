@@ -19,16 +19,29 @@
  */
 
 import { useBlockProps, InspectorControls } from "@wordpress/block-editor";
+import { useInstanceId } from "@wordpress/compose";
 import { __ } from "@wordpress/i18n";
 
 export default function EditBlock({ attributes, setAttributes }) {
+  const { uniqueId, baseInstanceId } = attributes;
+  const instanceId = useInstanceId(EditBlock);
+
+  const isDuplicate = baseInstanceId && baseInstanceId !== instanceId;
+
+  if (!uniqueId || isDuplicate) {
+    const newUniqueId = `twab-${instanceId}`;
+    setAttributes({ uniqueId: newUniqueId, baseInstanceId: instanceId });
+  }
+
   // Block props
   const blockProps = useBlockProps();
 
   return (
     <>
       <InspectorControls></InspectorControls>
-      <div {...blockProps}>Typewriter animation block</div>
+      <div id={attributes.uniqueId} {...blockProps}>
+        Typewriter animation block
+      </div>
     </>
   );
 }
