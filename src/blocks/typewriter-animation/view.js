@@ -51,6 +51,14 @@ store("typewriter-animation", {
             typewriterElement.innerText = currentWord.substring(0, i - 1);
             await waitAnimation(waitTime);
           }
+          await waitAnimation(waitTime * 10);
+
+          // If we are pointing to the last element of the array
+          if (currentPhraseIndex === typewriterPhrases.length - 1) {
+            currentPhraseIndex = 0;
+          } else {
+            currentPhraseIndex++;
+          }
         }
       };
       typewriterLoop();
