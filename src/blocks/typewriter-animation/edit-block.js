@@ -43,8 +43,8 @@ export default function EditBlock({ attributes, setAttributes }) {
   return (
     <>
       <InspectorControls></InspectorControls>
-      <div id={attributes.uniqueId} {...blockProps}>
-        Typewriter animation block
+      <div {...blockProps}>
+        <div id={uniqueId}>Typewriter animation block</div>
       </div>
     </>
   );
