@@ -21,6 +21,7 @@
 import { useBlockProps, InspectorControls } from "@wordpress/block-editor";
 import { useInstanceId } from "@wordpress/compose";
 import { __ } from "@wordpress/i18n";
+import { useEffect } from "@wordpress/element";
 
 export default function EditBlock({ attributes, setAttributes }) {
   // Get block attributes
@@ -44,7 +45,13 @@ export default function EditBlock({ attributes, setAttributes }) {
     <>
       <InspectorControls></InspectorControls>
       <div {...blockProps}>
-        <div id={uniqueId}>Typewriter animation block</div>
+        <h2 class="twab">
+          Crafting something{" "}
+          <span id={uniqueId} class="twab__animation-text">
+            amazing
+          </span>
+          <span class="twab__cursor">|</span>
+        </h2>
       </div>
     </>
   );
