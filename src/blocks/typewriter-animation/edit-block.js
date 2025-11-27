@@ -45,10 +45,49 @@ export default function EditBlock({ attributes, setAttributes }) {
   // Run after render and access the DOM
   useEffect(() => {
     if (rootBlockRef.current) {
-      const heading = rootBlockRef.current.querySelector("h2.twab");
-      console.log("Heading:", heading);
+      const typewriterElement = rootBlockRef.current.querySelector(
+        `h2.twab span#${uniqueId}`
+      );
+
+      // Animation effect
+      function waitAnimation(miliseconds) {
+        return new Promise((resolve) => setTimeout(resolve, miliseconds));
+      }
+      const typewriterPhrases = [
+        "incredible",
+        "engaging",
+        "unique",
+        "surprising",
+      ];
+
+      let waitTime = 100;
+      let currentPhraseIndex = 0;
+
+      const typewriterLoop = async () => {
+        while (true) {
+          let currentWord = typewriterPhrases[currentPhraseIndex];
+          for (let i = 0; i < currentWord.length; i++) {
+            typewriterElement.innerText = currentWord.substring(0, i + 1);
+            await waitAnimation(waitTime);
+          }
+          await waitAnimation(waitTime * 10);
+          for (let i = currentWord.length; i > 0; i--) {
+            typewriterElement.innerText = currentWord.substring(0, i - 1);
+            await waitAnimation(waitTime);
+          }
+          await waitAnimation(waitTime * 10);
+
+          // If we are pointing to the last element of the array
+          if (currentPhraseIndex === typewriterPhrases.length - 1) {
+            currentPhraseIndex = 0;
+          } else {
+            currentPhraseIndex++;
+          }
+        }
+      };
+      typewriterLoop();
     }
-  });
+  }, [uniqueId]);
 
   // Block props
   const blockProps = useBlockProps({ ref: rootBlockRef }); // Attach persistent pointer to the block
