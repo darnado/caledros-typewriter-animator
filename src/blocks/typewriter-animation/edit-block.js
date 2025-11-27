@@ -21,11 +21,14 @@
 import { useBlockProps, InspectorControls } from "@wordpress/block-editor";
 import { useInstanceId } from "@wordpress/compose";
 import { __ } from "@wordpress/i18n";
-import { useEffect } from "@wordpress/element";
+import { useRef, useEffect } from "@wordpress/element";
 
 export default function EditBlock({ attributes, setAttributes }) {
   // Get block attributes
   const { uniqueId, baseInstanceId } = attributes;
+
+  // Create persistent pointer accross renders
+  const rootBlockRef = useRef(null);
 
   // Generate new ID
   const instanceId = useInstanceId(EditBlock);
@@ -39,18 +42,26 @@ export default function EditBlock({ attributes, setAttributes }) {
     setAttributes({ uniqueId: newUniqueId, baseInstanceId: instanceId });
   }
 
+  // Run after render and access the DOM
+  useEffect(() => {
+    if (rootBlockRef.current) {
+      const heading = rootBlockRef.current.querySelector("h2.twab");
+      console.log("Heading:", heading);
+    }
+  });
+
   // Block props
-  const blockProps = useBlockProps();
+  const blockProps = useBlockProps({ ref: rootBlockRef }); // Attach persistent pointer to the block
   return (
     <>
       <InspectorControls></InspectorControls>
       <div {...blockProps}>
-        <h2 class="twab">
+        <h2 className="twab">
           Crafting something{" "}
-          <span id={uniqueId} class="twab__animation-text">
+          <span id={uniqueId} className="twab__animation-text">
             amazing
           </span>
-          <span class="twab__cursor">|</span>
+          <span className="twab__cursor">|</span>
         </h2>
       </div>
     </>
