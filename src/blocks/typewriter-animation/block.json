@@ -12,14 +12,12 @@
   "editorScript": "file:./index.js",
   "viewScriptModule": "file:./view.js",
   "editorStyle": "file:./index.css",
-  "render": "file:./render.php",
   "style": "file:./style-index.css",
   "example": {},
   "attributes": {
     "uniqueId": {
       "type": "string"
-    },
-    "baseInstanceId": { "type": "string" }
+    }
   },
   "supports": {
     "align": false,

@@ -19,78 +19,74 @@
  */
 
 import { useBlockProps, InspectorControls } from "@wordpress/block-editor";
-import { useInstanceId } from "@wordpress/compose";
 import { __ } from "@wordpress/i18n";
 import { useRef, useEffect } from "@wordpress/element";
 
-export default function EditBlock({ attributes, setAttributes }) {
-  // Get block attributes
-  const { uniqueId, baseInstanceId } = attributes;
+// Global store used only at editor runtime (never saved in database)
+let uniqueIds = [];
 
-  // Create persistent pointer accross renders
+export default function EditBlock({ attributes, setAttributes }) {
+  const { uniqueId } = attributes;
+
   const rootBlockRef = useRef(null);
 
-  // Generate new ID
-  const instanceId = useInstanceId(EditBlock);
+  // Function to generate a persistent ID
+  const generateId = () =>
+    `twab-${Math.random().toString(36).substring(2, 10)}`;
 
-  // Check if block is duplicated
-  const isDuplicate = baseInstanceId && baseInstanceId !== instanceId;
-
-  // Set new ID if block is new or duplicated
-  if (!uniqueId || isDuplicate) {
-    const newUniqueId = `twab-${instanceId}`;
-    setAttributes({ uniqueId: newUniqueId, baseInstanceId: instanceId });
-  }
-
-  // Run after render and access the DOM
+  // Assign a unique ID only if:
+  // - Block is newly created (uniqueId is missing)
+  // - Block was duplicated (uniqueId already exists in uniqueIds[])
   useEffect(() => {
-    if (rootBlockRef.current) {
+    let id = uniqueId;
+
+    if (!id || uniqueIds.includes(id)) {
+      id = generateId();
+      setAttributes({ uniqueId: id });
+    }
+
+    uniqueIds.push(id);
+  }, []); // runs only once per block instance
+
+  // Typewriter Animation effect
+  useEffect(() => {
+    if (rootBlockRef.current && uniqueId) {
       const typewriterElement = rootBlockRef.current.querySelector(
         `h2.twab span#${uniqueId}`
       );
 
-      // Animation effect
-      function waitAnimation(miliseconds) {
-        return new Promise((resolve) => setTimeout(resolve, miliseconds));
+      async function wait(ms) {
+        return new Promise((res) => setTimeout(res, ms));
       }
-      const typewriterPhrases = [
-        "incredible",
-        "engaging",
-        "unique",
-        "surprising",
-      ];
 
-      let waitTime = 100;
-      let currentPhraseIndex = 0;
+      const phrases = ["incredible", "engaging", "unique", "surprising"];
+      let time = 100;
+      let index = 0;
 
-      const typewriterLoop = async () => {
+      const loop = async () => {
         while (true) {
-          let currentWord = typewriterPhrases[currentPhraseIndex];
-          for (let i = 0; i < currentWord.length; i++) {
-            typewriterElement.innerText = currentWord.substring(0, i + 1);
-            await waitAnimation(waitTime);
+          const word = phrases[index];
+          for (let i = 0; i < word.length; i++) {
+            typewriterElement.innerText = word.slice(0, i + 1);
+            await wait(time);
           }
-          await waitAnimation(waitTime * 10);
-          for (let i = currentWord.length; i > 0; i--) {
-            typewriterElement.innerText = currentWord.substring(0, i - 1);
-            await waitAnimation(waitTime);
+          await wait(time * 10);
+          for (let i = word.length; i > 0; i--) {
+            typewriterElement.innerText = word.slice(0, i - 1);
+            await wait(time);
           }
-          await waitAnimation(waitTime * 10);
+          await wait(time * 10);
 
-          // If we are pointing to the last element of the array
-          if (currentPhraseIndex === typewriterPhrases.length - 1) {
-            currentPhraseIndex = 0;
-          } else {
-            currentPhraseIndex++;
-          }
+          index = (index + 1) % phrases.length;
         }
       };
-      typewriterLoop();
+
+      loop();
     }
   }, [uniqueId]);
 
-  // Block props
-  const blockProps = useBlockProps({ ref: rootBlockRef }); // Attach persistent pointer to the block
+  const blockProps = useBlockProps({ ref: rootBlockRef });
+
   return (
     <>
       <InspectorControls></InspectorControls>

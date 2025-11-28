@@ -34,12 +34,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function twab_block_loader() {
     $twab_blocks = [    
-        ['block_name' => 'typewriter-animation']
+        ['block_name' => 'typewriter-animation', 'block_options' => ['render_callback' => 'twab_render_cb']]
     ];
 
     foreach ( $twab_blocks as $twab_block ) {
         register_block_type(
-            TYPEWRITER_ANIMATION_BLOCK_BASE_FOLDER . 'build/blocks/' . $twab_block['block_name'], []
+            TYPEWRITER_ANIMATION_BLOCK_BASE_FOLDER . 'build/blocks/' . $twab_block['block_name'],
+            isset($twab_block['block_options']) ? $twab_block['block_options'] : []
         );
     }
 }

@@ -26,16 +26,34 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <?php
-// Block attributes
-$uniqueId = $attributes['uniqueId'];
 
-// Prepare the context JSON content
-$wp_context = [    
-    "uniqueId" => $uniqueId
-];
+function twab_render_cb($attributes){
+    // Block attributes
+    $uniqueId = $attributes['uniqueId'];    
 
-$wp_context_json = htmlspecialchars(json_encode($wp_context), ENT_QUOTES, 'UTF-8');
-?>
-<div data-wp-interactive="typewriter-animation" data-wp-context='<?php echo esc_attr($wp_context_json);?>' data-wp-init="callbacks.onInit">
-    <h2 class="twab">Crafting something <span id="<?php echo esc_attr($uniqueId); ?>" class="twab__animation-text">amazing</span><span class="twab__cursor">|</span></h2>
-</div>
+    // Prepare the context JSON content
+    $wp_context = [    
+        "uniqueId" => $uniqueId        
+    ];
+
+    $wp_context_json = htmlspecialchars(json_encode($wp_context), ENT_QUOTES, 'UTF-8');
+    
+    // BUFFERING
+    // Start output buffering
+    ob_start(); 
+    ?>  
+    
+    <div data-wp-interactive="typewriter-animation" data-wp-context='<?php echo esc_attr($wp_context_json);?>' data-wp-init="callbacks.onInit">
+        <h2 class="twab">Crafting something <span id="<?php echo esc_attr($uniqueId); ?>" class="twab__animation-text">amazing</span><span class="twab__cursor">|</span></h2>
+    </div>
+    <?php 
+    // Fetch the content of the output buffer
+    $output = ob_get_contents();
+    // Stop output buffering
+    ob_end_clean();
+    // Output the stored content
+    return $output; 
+}
+
+
+
