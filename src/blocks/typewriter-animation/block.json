@@ -17,6 +17,14 @@
   "attributes": {
     "uniqueId": {
       "type": "string"
+    },
+    "staticText": {
+      "type": "string",
+      "default": "Crafting something"
+    },
+    "animatedPhrases": {
+      "type": "array",
+      "default": ["incredible", "engaging", "unique", "surprising"]
     }
   },
   "supports": {
