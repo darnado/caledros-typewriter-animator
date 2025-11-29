@@ -17,3 +17,10 @@
  * You should have received a copy of the GNU General Public License along
  * with Typewriter Animation Block; if not, see <https://www.gnu.org/licenses/>.
  */
+
+/*Active tab in the Inspector Controls section*/
+.twab-active-tab {
+  color: #007cba;
+  font-weight: bold;
+  border-bottom: 2px solid #007cba;
+}

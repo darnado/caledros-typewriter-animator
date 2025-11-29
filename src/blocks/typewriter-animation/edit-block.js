@@ -21,6 +21,8 @@
 import { useBlockProps, InspectorControls } from "@wordpress/block-editor";
 import { __ } from "@wordpress/i18n";
 import { useRef, useEffect } from "@wordpress/element";
+import StaticTextSettings from "./settings/static-text-settings";
+import { TabPanel } from "@wordpress/components";
 
 // Global store used only at editor runtime (never saved in database)
 let uniqueIds = [];
@@ -89,7 +91,45 @@ export default function EditBlock({ attributes, setAttributes }) {
 
   return (
     <>
-      <InspectorControls></InspectorControls>
+      <InspectorControls>
+        <TabPanel
+          activeClass="twab-active-tab"
+          tabs={[
+            {
+              name: "content",
+              title: "Content",
+            },
+            {
+              name: "style",
+              title: "Style",
+            },
+            {
+              name: "additional",
+              title: "Additional",
+            },
+          ]}
+        >
+          {(tab) => {
+            if (tab.name === "content") {
+              return (
+                <>
+                  <StaticTextSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></StaticTextSettings>
+                </>
+              );
+            }
+            if (tab.name === "style") {
+              return <></>;
+            }
+            if (tab.name === "additional") {
+              return <></>;
+            }
+            return null;
+          }}
+        </TabPanel>
+      </InspectorControls>
       <div {...blockProps}>
         <h2 className="twab">
           Crafting something{" "}
