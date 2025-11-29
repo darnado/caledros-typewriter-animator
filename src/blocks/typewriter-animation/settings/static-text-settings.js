@@ -33,7 +33,7 @@ export default function StaticTextSettings({ attributes, setAttributes }) {
         __nextHasNoMarginBottom
         __next40pxDefaultSize
         help={__(
-          "Type content for the static text.",
+          "Type the content for the static text.",
           "typewriter-animation-block"
         )}
         value={staticText}

@@ -20,7 +20,7 @@
     },
     "staticText": {
       "type": "string",
-      "default": "Crafting something"
+      "default": "Crafting something "
     },
     "animatedPhrases": {
       "type": "array",

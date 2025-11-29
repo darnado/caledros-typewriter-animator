@@ -28,7 +28,7 @@ import { TabPanel } from "@wordpress/components";
 let uniqueIds = [];
 
 export default function EditBlock({ attributes, setAttributes }) {
-  const { uniqueId } = attributes;
+  const { uniqueId, staticText } = attributes;
 
   const rootBlockRef = useRef(null);
 
@@ -132,7 +132,7 @@ export default function EditBlock({ attributes, setAttributes }) {
       </InspectorControls>
       <div {...blockProps}>
         <h2 className="twab">
-          Crafting something{" "}
+          {staticText}
           <span id={uniqueId} className="twab__animation-text">
             amazing
           </span>

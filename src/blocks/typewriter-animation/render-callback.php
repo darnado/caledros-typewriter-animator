@@ -29,7 +29,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function twab_render_cb($attributes){
     // Block attributes
-    $uniqueId = $attributes['uniqueId'];    
+    $uniqueId = sanitize_text_field($attributes['uniqueId'] ?? '');  
+    $staticText =  sanitize_text_field($attributes['staticText'] ?? '');  
 
     // Prepare the context JSON content
     $wp_context = [    
@@ -44,7 +45,7 @@ function twab_render_cb($attributes){
     ?>  
     
     <div data-wp-interactive="typewriter-animation" data-wp-context='<?php echo esc_attr($wp_context_json);?>' data-wp-init="callbacks.onInit">
-        <h2 class="twab">Crafting something <span id="<?php echo esc_attr($uniqueId); ?>" class="twab__animation-text">amazing</span><span class="twab__cursor">|</span></h2>
+        <h2 class="twab"><?php echo esc_html( $staticText ); ?><span id="<?php echo esc_attr($uniqueId); ?>" class="twab__animation-text">amazing</span><span class="twab__cursor">|</span></h2>
     </div>
     <?php 
     // Fetch the content of the output buffer
@@ -54,6 +55,3 @@ function twab_render_cb($attributes){
     // Output the stored content
     return $output; 
 }
-
-
-
