@@ -22,6 +22,7 @@ import { useBlockProps, InspectorControls } from "@wordpress/block-editor";
 import { __ } from "@wordpress/i18n";
 import { useRef, useEffect } from "@wordpress/element";
 import StaticTextSettings from "./settings/static-text-settings";
+import AnimatedPhrasesSettings from "./settings/animated-phrases-settings";
 import { TabPanel } from "@wordpress/components";
 
 // Global store used only at editor runtime (never saved in database)
@@ -117,6 +118,10 @@ export default function EditBlock({ attributes, setAttributes }) {
                     attributes={attributes}
                     setAttributes={setAttributes}
                   ></StaticTextSettings>
+                  <AnimatedPhrasesSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></AnimatedPhrasesSettings>
                 </>
               );
             }

@@ -31,10 +31,12 @@ function twab_render_cb($attributes){
     // Block attributes
     $uniqueId = sanitize_text_field($attributes['uniqueId'] ?? '');  
     $staticText =  sanitize_text_field($attributes['staticText'] ?? '');  
+    $animatedPhrases = $attributes['animatedPhrases'] ?? [];
 
     // Prepare the context JSON content
     $wp_context = [    
-        "uniqueId" => $uniqueId        
+        "uniqueId" => $uniqueId,
+        "animatedPhrases" => $animatedPhrases     
     ];
 
     $wp_context_json = htmlspecialchars(json_encode($wp_context), ENT_QUOTES, 'UTF-8');

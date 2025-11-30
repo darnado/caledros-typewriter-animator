@@ -25,15 +25,14 @@ store("typewriter-animation", {
     onInit: () => {
       const context = getContext();
       const uniqueIdElement = `${context.uniqueId}`;
+      const animatedPhrases = `${context.animatedPhrases}`;
+
       function waitAnimation(miliseconds) {
         return new Promise((resolve) => setTimeout(resolve, miliseconds));
       }
-      const typewriterPhrases = [
-        "incredible",
-        "engaging",
-        "unique",
-        "surprising",
-      ];
+
+      const typewriterPhrases = animatedPhrases.split(",");
+
       const typewriterElement = document.getElementById(uniqueIdElement);
 
       let waitTime = 100;
