@@ -29,7 +29,7 @@ import { TabPanel } from "@wordpress/components";
 let uniqueIds = [];
 
 export default function EditBlock({ attributes, setAttributes }) {
-  const { uniqueId, staticText } = attributes;
+  const { uniqueId, staticText, animatedPhrases } = attributes;
 
   const rootBlockRef = useRef(null);
 
@@ -53,40 +53,51 @@ export default function EditBlock({ attributes, setAttributes }) {
 
   // Typewriter Animation effect
   useEffect(() => {
-    if (rootBlockRef.current && uniqueId) {
-      const typewriterElement = rootBlockRef.current.querySelector(
-        `h2.twab span#${uniqueId}`
-      );
+    if (!rootBlockRef.current || !uniqueId) return;
 
-      async function wait(ms) {
-        return new Promise((res) => setTimeout(res, ms));
-      }
+    const typewriterElement = rootBlockRef.current.querySelector(
+      `h2.twab span#${uniqueId}`
+    );
 
-      const phrases = ["incredible", "engaging", "unique", "surprising"];
-      let time = 100;
-      let index = 0;
+    let isCancelled = false;
 
-      const loop = async () => {
-        while (true) {
-          const word = phrases[index];
-          for (let i = 0; i < word.length; i++) {
-            typewriterElement.innerText = word.slice(0, i + 1);
-            await wait(time);
-          }
-          await wait(time * 10);
-          for (let i = word.length; i > 0; i--) {
-            typewriterElement.innerText = word.slice(0, i - 1);
-            await wait(time);
-          }
-          await wait(time * 10);
+    const wait = (ms) => new Promise((res) => setTimeout(res, ms));
 
-          index = (index + 1) % phrases.length;
+    let time = 100;
+    let index = 0;
+
+    const loop = async () => {
+      while (!isCancelled) {
+        const word = animatedPhrases[index];
+
+        // Type forward
+        for (let i = 0; i < word.length && !isCancelled; i++) {
+          typewriterElement.innerText = word.slice(0, i + 1);
+          await wait(time);
         }
-      };
 
-      loop();
-    }
-  }, [uniqueId]);
+        await wait(time * 10);
+        if (isCancelled) break;
+
+        // Type backward
+        for (let i = word.length; i > 0 && !isCancelled; i--) {
+          typewriterElement.innerText = word.slice(0, i - 1);
+          await wait(time);
+        }
+
+        await wait(time * 10);
+
+        index = (index + 1) % animatedPhrases.length;
+      }
+    };
+
+    loop();
+
+    // Cleanup to stop old loop
+    return () => {
+      isCancelled = true;
+    };
+  }, [uniqueId, animatedPhrases]);
 
   const blockProps = useBlockProps({ ref: rootBlockRef });
 
@@ -138,9 +149,7 @@ export default function EditBlock({ attributes, setAttributes }) {
       <div {...blockProps}>
         <h2 className="twab">
           {staticText}
-          <span id={uniqueId} className="twab__animation-text">
-            amazing
-          </span>
+          <span id={uniqueId} className="twab__animation-text"></span>
           <span className="twab__cursor">|</span>
         </h2>
       </div>
