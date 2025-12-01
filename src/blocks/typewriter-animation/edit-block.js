@@ -148,7 +148,7 @@ export default function EditBlock({ attributes, setAttributes }) {
       </InspectorControls>
       <div {...blockProps}>
         <h2 className="twab">
-          {staticText}
+          {staticText}{" "}
           <span id={uniqueId} className="twab__animation-text"></span>
           <span className="twab__cursor">|</span>
         </h2>
