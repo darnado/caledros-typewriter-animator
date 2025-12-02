@@ -47,7 +47,7 @@ function twab_render_cb($attributes){
     ?>  
     
     <div data-wp-interactive="typewriter-animation" data-wp-context='<?php echo esc_attr($wp_context_json);?>' data-wp-init="callbacks.onInit">
-        <h2 class="twab"><?php echo esc_html( $staticText ); ?> <span id="<?php echo esc_attr($uniqueId); ?>" class="twab__animation-text"></span><span class="twab__cursor">|</span></h2>
+        <h2 class="twab"> <span class="twab__static-text"><?php echo esc_html( $staticText ); ?> </span><span id="<?php echo esc_attr($uniqueId); ?>" class="twab__animation-text"></span><span class="twab__cursor">|</span></h2>
     </div>
     <?php 
     // Fetch the content of the output buffer
