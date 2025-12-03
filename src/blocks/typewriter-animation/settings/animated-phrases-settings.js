@@ -20,6 +20,7 @@
 
 import { __ } from "@wordpress/i18n";
 import { PanelBody, TextControl, Button } from "@wordpress/components";
+import { sprintf } from "@wordpress/i18n";
 
 export default function AnimatedPhrasesSettings({ attributes, setAttributes }) {
   const { animatedPhrases } = attributes;
