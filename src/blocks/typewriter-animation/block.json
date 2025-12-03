@@ -25,6 +25,10 @@
     "animatedPhrases": {
       "type": "array",
       "default": ["incredible", "engaging", "unique", "surprising"]
+    },
+    "hideStaticText": {
+      "type": "boolean",
+      "default": false
     }
   },
   "supports": {

@@ -21,15 +21,16 @@
 import { useBlockProps, InspectorControls } from "@wordpress/block-editor";
 import { __ } from "@wordpress/i18n";
 import { useRef, useEffect } from "@wordpress/element";
+import { TabPanel } from "@wordpress/components";
 import StaticTextSettings from "./settings/static-text-settings";
 import AnimatedPhrasesSettings from "./settings/animated-phrases-settings";
-import { TabPanel } from "@wordpress/components";
+import HideStaticTextSettings from "./settings/hide-static-text";
 
 // Global store used only at editor runtime (never saved in database)
 let uniqueIds = [];
 
 export default function EditBlock({ attributes, setAttributes }) {
-  const { uniqueId, staticText, animatedPhrases } = attributes;
+  const { uniqueId, staticText, animatedPhrases, hideStaticText } = attributes;
 
   const rootBlockRef = useRef(null);
 
@@ -133,6 +134,10 @@ export default function EditBlock({ attributes, setAttributes }) {
                     attributes={attributes}
                     setAttributes={setAttributes}
                   ></AnimatedPhrasesSettings>
+                  <HideStaticTextSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></HideStaticTextSettings>
                 </>
               );
             }
@@ -148,7 +153,9 @@ export default function EditBlock({ attributes, setAttributes }) {
       </InspectorControls>
       <div {...blockProps}>
         <h2 className="twab">
-          <span className="twab__static-text">{staticText} </span>
+          {!hideStaticText && (
+            <span className="twab__static-text">{staticText} </span>
+          )}
           <span id={uniqueId} className="twab__animation-text"></span>
           <span className="twab__cursor">|</span>
         </h2>
