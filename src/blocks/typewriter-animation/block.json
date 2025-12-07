@@ -29,6 +29,10 @@
     "hideStaticText": {
       "type": "boolean",
       "default": false
+    },
+    "animationSpeed": {
+      "type": "number",
+      "default": 100
     }
   },
   "supports": {

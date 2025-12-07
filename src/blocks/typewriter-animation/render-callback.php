@@ -33,6 +33,7 @@ function twab_render_cb($attributes){
     $staticText =  sanitize_text_field($attributes['staticText'] ?? '');      
     $hideStaticText = filter_var($attributes['hideStaticText'] ?? false, FILTER_VALIDATE_BOOLEAN);
     $animatedPhrases = $attributes['animatedPhrases'] ?? [];
+    $animationSpeed = intval($attributes['animationSpeed'] ?? 100);
 
     // Sanitize array 
     if ( is_array( $animatedPhrases ) ) {
@@ -42,7 +43,8 @@ function twab_render_cb($attributes){
     // Prepare the context JSON content
     $wp_context = [    
         "uniqueId" => $uniqueId,
-        "animatedPhrases" => $animatedPhrases     
+        "animatedPhrases" => $animatedPhrases,
+        "animationSpeed" => $animationSpeed     
     ];
 
     $wp_context_json = htmlspecialchars(json_encode($wp_context), ENT_QUOTES, 'UTF-8');

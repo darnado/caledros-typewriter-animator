@@ -25,12 +25,19 @@ import { TabPanel } from "@wordpress/components";
 import StaticTextSettings from "./settings/static-text-settings";
 import AnimatedPhrasesSettings from "./settings/animated-phrases-settings";
 import HideStaticTextSettings from "./settings/hide-static-text";
+import AnimationSpeedSettings from "./settings/animation-speed-settings";
 
 // Global store used only at editor runtime (never saved in database)
 let uniqueIds = [];
 
 export default function EditBlock({ attributes, setAttributes }) {
-  const { uniqueId, staticText, animatedPhrases, hideStaticText } = attributes;
+  const {
+    uniqueId,
+    staticText,
+    animatedPhrases,
+    hideStaticText,
+    animationSpeed,
+  } = attributes;
 
   const rootBlockRef = useRef(null);
 
@@ -64,7 +71,6 @@ export default function EditBlock({ attributes, setAttributes }) {
 
     const wait = (ms) => new Promise((res) => setTimeout(res, ms));
 
-    let time = 100;
     let index = 0;
 
     const loop = async () => {
@@ -74,19 +80,19 @@ export default function EditBlock({ attributes, setAttributes }) {
         // Type forward
         for (let i = 0; i < word.length && !isCancelled; i++) {
           typewriterElement.innerText = word.slice(0, i + 1);
-          await wait(time);
+          await wait(animationSpeed);
         }
 
-        await wait(time * 10);
+        await wait(animationSpeed * 10);
         if (isCancelled) break;
 
         // Type backward
         for (let i = word.length; i > 0 && !isCancelled; i--) {
           typewriterElement.innerText = word.slice(0, i - 1);
-          await wait(time);
+          await wait(animationSpeed);
         }
 
-        await wait(time * 10);
+        await wait(animationSpeed * 10);
 
         index = (index + 1) % animatedPhrases.length;
       }
@@ -98,7 +104,7 @@ export default function EditBlock({ attributes, setAttributes }) {
     return () => {
       isCancelled = true;
     };
-  }, [uniqueId, animatedPhrases]);
+  }, [uniqueId, animatedPhrases, animationSpeed]);
 
   const blockProps = useBlockProps({ ref: rootBlockRef });
 
@@ -138,6 +144,10 @@ export default function EditBlock({ attributes, setAttributes }) {
                     attributes={attributes}
                     setAttributes={setAttributes}
                   ></HideStaticTextSettings>
+                  <AnimationSpeedSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></AnimationSpeedSettings>
                 </>
               );
             }

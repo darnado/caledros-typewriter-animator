@@ -26,6 +26,7 @@ store("typewriter-animation", {
       const context = getContext();
       const uniqueIdElement = `${context.uniqueId}`;
       const animatedPhrases = `${context.animatedPhrases}`;
+      const animationSpeed = `${context.animationSpeed}`;
 
       function waitAnimation(miliseconds) {
         return new Promise((resolve) => setTimeout(resolve, miliseconds));
@@ -35,7 +36,6 @@ store("typewriter-animation", {
 
       const typewriterElement = document.getElementById(uniqueIdElement);
 
-      let waitTime = 100;
       let currentPhraseIndex = 0;
 
       const typewriterLoop = async () => {
@@ -43,14 +43,14 @@ store("typewriter-animation", {
           let currentWord = typewriterPhrases[currentPhraseIndex];
           for (let i = 0; i < currentWord.length; i++) {
             typewriterElement.innerText = currentWord.substring(0, i + 1);
-            await waitAnimation(waitTime);
+            await waitAnimation(animationSpeed);
           }
-          await waitAnimation(waitTime * 10);
+          await waitAnimation(animationSpeed * 10);
           for (let i = currentWord.length; i > 0; i--) {
             typewriterElement.innerText = currentWord.substring(0, i - 1);
-            await waitAnimation(waitTime);
+            await waitAnimation(animationSpeed);
           }
-          await waitAnimation(waitTime * 10);
+          await waitAnimation(animationSpeed * 10);
 
           // If we are pointing to the last element of the array
           if (currentPhraseIndex === typewriterPhrases.length - 1) {
