@@ -33,6 +33,10 @@
     "animationSpeed": {
       "type": "number",
       "default": 100
+    },
+    "textColor": {
+      "type": "string",
+      "default": "#000000"
     }
   },
   "supports": {

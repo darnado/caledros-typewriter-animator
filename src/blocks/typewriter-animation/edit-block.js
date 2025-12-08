@@ -26,6 +26,7 @@ import StaticTextSettings from "./settings/static-text-settings";
 import AnimatedPhrasesSettings from "./settings/animated-phrases-settings";
 import HideStaticTextSettings from "./settings/hide-static-text";
 import AnimationSpeedSettings from "./settings/animation-speed-settings";
+import TextColorSettings from "./settings/text-color-settings";
 
 // Global store used only at editor runtime (never saved in database)
 let uniqueIds = [];
@@ -37,6 +38,7 @@ export default function EditBlock({ attributes, setAttributes }) {
     animatedPhrases,
     hideStaticText,
     animationSpeed,
+    textColor,
   } = attributes;
 
   const rootBlockRef = useRef(null);
@@ -148,6 +150,10 @@ export default function EditBlock({ attributes, setAttributes }) {
                     attributes={attributes}
                     setAttributes={setAttributes}
                   ></AnimationSpeedSettings>
+                  <TextColorSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></TextColorSettings>
                 </>
               );
             }
