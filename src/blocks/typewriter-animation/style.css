@@ -22,11 +22,9 @@
   font-size: 40px;
 }
 .twab__animation-text {
-  color: #028090;
   font-weight: bold;
 }
 .twab__cursor {
-  color: #028090;
   animation: flicker 1s linear infinite;
 }
 @keyframes flicker {

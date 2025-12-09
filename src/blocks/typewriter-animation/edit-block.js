@@ -170,10 +170,18 @@ export default function EditBlock({ attributes, setAttributes }) {
       <div {...blockProps}>
         <h2 className="twab">
           {!hideStaticText && (
-            <span className="twab__static-text">{staticText} </span>
+            <span className="twab__static-text" style={{ color: textColor }}>
+              {staticText}{" "}
+            </span>
           )}
-          <span id={uniqueId} className="twab__animation-text"></span>
-          <span className="twab__cursor">|</span>
+          <span
+            id={uniqueId}
+            className="twab__animation-text"
+            style={{ color: textColor }}
+          ></span>
+          <span className="twab__cursor" style={{ color: textColor }}>
+            |
+          </span>
         </h2>
       </div>
     </>

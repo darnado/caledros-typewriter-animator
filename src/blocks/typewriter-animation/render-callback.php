@@ -34,6 +34,7 @@ function twab_render_cb($attributes){
     $hideStaticText = filter_var($attributes['hideStaticText'] ?? false, FILTER_VALIDATE_BOOLEAN);
     $animatedPhrases = $attributes['animatedPhrases'] ?? [];
     $animationSpeed = intval($attributes['animationSpeed'] ?? 100);
+    $textColor = sanitize_text_field($attributes['textColor'] ?? '#000000');  
 
     // Sanitize array 
     if ( is_array( $animatedPhrases ) ) {
@@ -44,7 +45,7 @@ function twab_render_cb($attributes){
     $wp_context = [    
         "uniqueId" => $uniqueId,
         "animatedPhrases" => $animatedPhrases,
-        "animationSpeed" => $animationSpeed     
+        "animationSpeed" => $animationSpeed        
     ];
 
     $wp_context_json = htmlspecialchars(json_encode($wp_context), ENT_QUOTES, 'UTF-8');
@@ -57,11 +58,11 @@ function twab_render_cb($attributes){
     <div data-wp-interactive="typewriter-animation" data-wp-context='<?php echo esc_attr($wp_context_json);?>' data-wp-init="callbacks.onInit">
         <h2 class="twab">
             <?php if( !$hideStaticText ): ?>
-                <span class="twab__static-text">
+                <span class="twab__static-text" style="color: <?php echo esc_attr($textColor); ?>">
                     <?php echo esc_html( $staticText ); ?>
                 </span>
             <?php endif; ?>    
-            <span id="<?php echo esc_attr($uniqueId); ?>" class="twab__animation-text"></span><span class="twab__cursor">|</span>
+            <span id="<?php echo esc_attr($uniqueId); ?>" class="twab__animation-text" style="color: <?php echo esc_attr($textColor); ?>"></span><span class="twab__cursor" style="color: <?php echo esc_attr($textColor); ?>>|</span>
         </h2>
     </div>
     <?php 
