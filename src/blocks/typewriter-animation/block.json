@@ -34,7 +34,7 @@
       "type": "number",
       "default": 100
     },
-    "textColor": {
+    "staticTextColor": {
       "type": "string",
       "default": "#000000"
     }

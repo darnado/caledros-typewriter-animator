@@ -23,8 +23,8 @@ import { useSettings } from "@wordpress/block-editor";
 import { select } from "@wordpress/data";
 import { __ } from "@wordpress/i18n";
 
-export default function TextColorSettings({ attributes, setAttributes }) {
-  const { textColor } = attributes;
+export default function StaticTextColorSettings({ attributes, setAttributes }) {
+  const { staticTextColor } = attributes;
 
   const [themeJsonPalette, defaultPalette] = useSettings(
     "color.palette",
@@ -70,13 +70,13 @@ export default function TextColorSettings({ attributes, setAttributes }) {
 
   return (
     <PanelBody
-      title={__("Text color", "typewriter-animation-block")}
+      title={__("Static text color", "typewriter-animation-block")}
       initialOpen={false}
     >
       <ColorPalette
         colors={editorPalette ? colorOptions : fallbackColorOptions}
-        value={textColor}
-        onChange={(newColor) => setAttributes({ textColor: newColor })}
+        value={staticTextColor}
+        onChange={(newColor) => setAttributes({ staticTextColor: newColor })}
         enableAlpha={true}
         clearable={false}
       />

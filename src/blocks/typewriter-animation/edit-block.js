@@ -26,7 +26,7 @@ import StaticTextSettings from "./settings/static-text-settings";
 import AnimatedPhrasesSettings from "./settings/animated-phrases-settings";
 import HideStaticTextSettings from "./settings/hide-static-text";
 import AnimationSpeedSettings from "./settings/animation-speed-settings";
-import TextColorSettings from "./settings/text-color-settings";
+import StaticTextColorSettings from "./settings/static-text-color-settings";
 
 // Global store used only at editor runtime (never saved in database)
 let uniqueIds = [];
@@ -38,7 +38,7 @@ export default function EditBlock({ attributes, setAttributes }) {
     animatedPhrases,
     hideStaticText,
     animationSpeed,
-    textColor,
+    staticTextColor,
   } = attributes;
 
   const rootBlockRef = useRef(null);
@@ -150,10 +150,10 @@ export default function EditBlock({ attributes, setAttributes }) {
                     attributes={attributes}
                     setAttributes={setAttributes}
                   ></AnimationSpeedSettings>
-                  <TextColorSettings
+                  <StaticTextColorSettings
                     attributes={attributes}
                     setAttributes={setAttributes}
-                  ></TextColorSettings>
+                  ></StaticTextColorSettings>
                 </>
               );
             }
@@ -170,18 +170,15 @@ export default function EditBlock({ attributes, setAttributes }) {
       <div {...blockProps}>
         <h2 className="twab">
           {!hideStaticText && (
-            <span className="twab__static-text" style={{ color: textColor }}>
+            <span
+              className="twab__static-text"
+              style={{ color: staticTextColor }}
+            >
               {staticText}{" "}
             </span>
           )}
-          <span
-            id={uniqueId}
-            className="twab__animation-text"
-            style={{ color: textColor }}
-          ></span>
-          <span className="twab__cursor" style={{ color: textColor }}>
-            |
-          </span>
+          <span id={uniqueId} className="twab__animation-text"></span>
+          <span className="twab__cursor">|</span>
         </h2>
       </div>
     </>
