@@ -35,6 +35,7 @@ function twab_render_cb($attributes){
     $animatedPhrases = $attributes['animatedPhrases'] ?? [];
     $animationSpeed = intval($attributes['animationSpeed'] ?? 100);
     $staticTextColor = sanitize_text_field($attributes['staticTextColor'] ?? '#000000');  
+    $animatedTextColor = sanitize_text_field($attributes['animatedTextColor'] ?? '#000000');  
 
     // Sanitize array 
     if ( is_array( $animatedPhrases ) ) {
@@ -62,7 +63,7 @@ function twab_render_cb($attributes){
                     <?php echo esc_html( $staticText ); ?>
                 </span>
             <?php endif; ?>    
-            <span id="<?php echo esc_attr($uniqueId); ?>" class="twab__animation-text"></span><span class="twab__cursor">|</span>
+            <span id="<?php echo esc_attr($uniqueId); ?>" class="twab__animation-text" style="color: <?php echo esc_attr($animatedTextColor); ?>"></span><span class="twab__cursor" style="color: <?php echo esc_attr($animatedTextColor); ?>">|</span>
         </h2>
     </div>
     <?php 

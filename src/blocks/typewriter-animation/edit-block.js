@@ -27,6 +27,7 @@ import AnimatedPhrasesSettings from "./settings/animated-phrases-settings";
 import HideStaticTextSettings from "./settings/hide-static-text";
 import AnimationSpeedSettings from "./settings/animation-speed-settings";
 import StaticTextColorSettings from "./settings/static-text-color-settings";
+import AnimatedTextColorSettings from "./settings/animated-text-color-settings";
 
 // Global store used only at editor runtime (never saved in database)
 let uniqueIds = [];
@@ -39,6 +40,7 @@ export default function EditBlock({ attributes, setAttributes }) {
     hideStaticText,
     animationSpeed,
     staticTextColor,
+    animatedTextColor,
   } = attributes;
 
   const rootBlockRef = useRef(null);
@@ -154,6 +156,10 @@ export default function EditBlock({ attributes, setAttributes }) {
                     attributes={attributes}
                     setAttributes={setAttributes}
                   ></StaticTextColorSettings>
+                  <AnimatedTextColorSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></AnimatedTextColorSettings>
                 </>
               );
             }
@@ -177,8 +183,14 @@ export default function EditBlock({ attributes, setAttributes }) {
               {staticText}{" "}
             </span>
           )}
-          <span id={uniqueId} className="twab__animation-text"></span>
-          <span className="twab__cursor">|</span>
+          <span
+            id={uniqueId}
+            className="twab__animation-text"
+            style={{ color: animatedTextColor }}
+          ></span>
+          <span className="twab__cursor" style={{ color: animatedTextColor }}>
+            |
+          </span>
         </h2>
       </div>
     </>

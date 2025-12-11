@@ -37,6 +37,10 @@
     "staticTextColor": {
       "type": "string",
       "default": "#000000"
+    },
+    "animatedTextColor": {
+      "type": "string",
+      "default": "#000000"
     }
   },
   "supports": {
