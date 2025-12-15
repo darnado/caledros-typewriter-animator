@@ -42,15 +42,15 @@
       "type": "string",
       "default": "#000000"
     },
-    "fontFamily": {
+    "textFontFamily": {
       "type": "string",
       "default": ""
     },
-    "fontWeight": {
+    "textFontWeight": {
       "type": "number",
       "default": 400
     },
-    "fontStyle": {
+    "textFontStyle": {
       "type": "string",
       "default": "normal"
     }

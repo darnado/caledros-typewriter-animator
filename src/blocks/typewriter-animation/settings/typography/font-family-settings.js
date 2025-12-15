@@ -29,7 +29,7 @@ export default function FontFamilySettings({
   getAvailableFontWeights,
   doesFontExist,
 }) {
-  const { fontFamily, fontWeight, fontStyle } = attributes;
+  const { textFontFamily, textFontWeight, textFontStyle } = attributes;
 
   // Recover theme fonts and custom fonts
   const themeFonts =
@@ -53,7 +53,7 @@ export default function FontFamilySettings({
       __next40pxDefaultSize
       __nextHasNoMarginBottom
       help={__("Select the font family.", "typewriter-animation-block")}
-      value={fontFamily}
+      value={textFontFamily}
       options={fontOptions}
       onChange={(newFontFamily) => {
         // Get available font styles for the new font family and update if necessary
@@ -61,8 +61,8 @@ export default function FontFamilySettings({
           ? getAvailableFontStyles(newFontFamily)
           : [];
 
-        const newFontStyle = availableFontStyles.includes(fontStyle)
-          ? fontStyle
+        const newFontStyle = availableFontStyles.includes(textFontStyle)
+          ? textFontStyle
           : availableFontStyles[0];
 
         // Get available font weights for the new font family and update if necessary
@@ -70,19 +70,19 @@ export default function FontFamilySettings({
           ? getAvailableFontWeights(newFontFamily, newFontStyle)
           : [];
 
-        const newFontWeight = availableFontWeights.includes(fontWeight)
-          ? fontWeight
+        const newFontWeight = availableFontWeights.includes(textFontWeight)
+          ? textFontWeight
           : availableFontWeights[0];
 
         setAttributes({
-          fontFamily: newFontFamily,
+          textFontFamily: newFontFamily,
           ...(doesFontExist(newFontFamily) &&
-            newFontStyle !== fontStyle && {
-              fontStyle: newFontStyle,
+            newFontStyle !== textFontStyle && {
+              textFontStyle: newFontStyle,
             }),
           ...(doesFontExist(newFontFamily) &&
-            newFontWeight !== fontWeight && {
-              fontWeight: newFontWeight,
+            newFontWeight !== textFontWeight && {
+              textFontWeight: newFontWeight,
             }),
         });
       }}

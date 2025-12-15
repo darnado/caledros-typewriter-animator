@@ -42,6 +42,9 @@ export default function EditBlock({ attributes, setAttributes }) {
     animationSpeed,
     staticTextColor,
     animatedTextColor,
+    textFontFamily,
+    textFontWeight,
+    textFontStyle,
   } = attributes;
 
   const rootBlockRef = useRef(null);
@@ -109,7 +112,14 @@ export default function EditBlock({ attributes, setAttributes }) {
     return () => {
       isCancelled = true;
     };
-  }, [uniqueId, animatedPhrases, animationSpeed]);
+  }, [
+    uniqueId,
+    animatedPhrases,
+    animationSpeed,
+    textFontFamily,
+    textFontStyle,
+    textFontWeight,
+  ]);
 
   const blockProps = useBlockProps({ ref: rootBlockRef });
 
@@ -186,7 +196,14 @@ export default function EditBlock({ attributes, setAttributes }) {
           {!hideStaticText && (
             <span
               className="twab__static-text"
-              style={{ color: staticTextColor }}
+              style={{
+                color: staticTextColor,
+                ...(textFontFamily !== "" && {
+                  fontFamily: `var(--wp--preset--font-family--${textFontFamily})`,
+                }),
+                fontWeight: textFontWeight,
+                fontStyle: textFontStyle,
+              }}
             >
               {staticText}{" "}
             </span>
@@ -194,9 +211,26 @@ export default function EditBlock({ attributes, setAttributes }) {
           <span
             id={uniqueId}
             className="twab__animation-text"
-            style={{ color: animatedTextColor }}
+            style={{
+              color: animatedTextColor,
+              ...(textFontFamily !== "" && {
+                fontFamily: `var(--wp--preset--font-family--${textFontFamily})`,
+              }),
+              fontWeight: textFontWeight,
+              fontStyle: textFontStyle,
+            }}
           ></span>
-          <span className="twab__cursor" style={{ color: animatedTextColor }}>
+          <span
+            className="twab__cursor"
+            style={{
+              color: animatedTextColor,
+              ...(textFontFamily !== "" && {
+                fontFamily: `var(--wp--preset--font-family--${textFontFamily})`,
+              }),
+              fontWeight: textFontWeight,
+              fontStyle: textFontStyle,
+            }}
+          >
             |
           </span>
         </h2>

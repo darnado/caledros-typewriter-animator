@@ -28,7 +28,7 @@ export default function FontStyleSettings({
   getAvailableFontWeights,
   doesFontExist,
 }) {
-  const { fontFamily, fontStyle, fontWeight } = attributes;
+  const { textFontFamily, textFontStyle, textFontWeight } = attributes;
 
   // Default font styles
   const defaultFontStyles = [
@@ -37,7 +37,7 @@ export default function FontStyleSettings({
   ];
 
   // Create options array for the controller
-  const fontStyleOptions = getAvailableFontStyles(fontFamily)?.map(
+  const fontStyleOptions = getAvailableFontStyles(textFontFamily)?.map(
     (styleValue) => {
       return {
         label: `${styleValue[0].toUpperCase()}${styleValue.slice(1)}`,
@@ -51,24 +51,24 @@ export default function FontStyleSettings({
       __next40pxDefaultSize
       __nextHasNoMarginBottom
       help={__("Select the font style.", "typewriter-animation-block")}
-      value={fontStyle}
+      value={textFontStyle}
       options={
         fontStyleOptions.length === 0 ? defaultFontStyles : fontStyleOptions
       }
       onChange={(newFontStyle) => {
-        const availableFontWeights = doesFontExist(fontFamily)
-          ? getAvailableFontWeights(fontFamily, newFontStyle)
+        const availableFontWeights = doesFontExist(textFontFamily)
+          ? getAvailableFontWeights(textFontFamily, newFontStyle)
           : [];
 
-        const newFontWeight = availableFontWeights.includes(fontWeight)
-          ? fontWeight
+        const newFontWeight = availableFontWeights.includes(textFontWeight)
+          ? textFontWeight
           : availableFontWeights[0];
 
         setAttributes({
-          fontStyle: newFontStyle,
-          ...(doesFontExist(fontFamily) &&
-            fontWeight !== newFontWeight && {
-              fontWeight: newFontWeight,
+          textFontStyle: newFontStyle,
+          ...(doesFontExist(textFontFamily) &&
+            textFontWeight !== newFontWeight && {
+              textFontWeight: newFontWeight,
             }),
         });
       }}
