@@ -41,6 +41,18 @@
     "animatedTextColor": {
       "type": "string",
       "default": "#000000"
+    },
+    "fontFamily": {
+      "type": "string",
+      "default": ""
+    },
+    "fontWeight": {
+      "type": "number",
+      "default": 400
+    },
+    "fontStyle": {
+      "type": "string",
+      "default": "normal"
     }
   },
   "supports": {

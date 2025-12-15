@@ -28,6 +28,7 @@ import HideStaticTextSettings from "./settings/hide-static-text";
 import AnimationSpeedSettings from "./settings/animation-speed-settings";
 import StaticTextColorSettings from "./settings/static-text-color-settings";
 import AnimatedTextColorSettings from "./settings/animated-text-color-settings";
+import TypographyGroupSettings from "./settings/typography/typography-group-settings";
 
 // Global store used only at editor runtime (never saved in database)
 let uniqueIds = [];
@@ -164,7 +165,14 @@ export default function EditBlock({ attributes, setAttributes }) {
               );
             }
             if (tab.name === "style") {
-              return <></>;
+              return (
+                <>
+                  <TypographyGroupSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></TypographyGroupSettings>
+                </>
+              );
             }
             if (tab.name === "additional") {
               return <></>;
