@@ -46,6 +46,9 @@ export default function EditBlock({ attributes, setAttributes }) {
     animatedTextFontFamily,
     animatedTextFontWeight,
     animatedTextFontStyle,
+    staticTextFontFamily,
+    staticTextFontWeight,
+    staticTextFontStyle,
   } = attributes;
 
   const rootBlockRef = useRef(null);
@@ -120,6 +123,9 @@ export default function EditBlock({ attributes, setAttributes }) {
     animatedTextFontFamily,
     animatedTextFontStyle,
     animatedTextFontWeight,
+    staticTextFontFamily,
+    staticTextFontStyle,
+    staticTextFontWeight,
   ]);
 
   const blockProps = useBlockProps({ ref: rootBlockRef });
@@ -203,6 +209,11 @@ export default function EditBlock({ attributes, setAttributes }) {
               className="twab__static-text"
               style={{
                 color: staticTextColor,
+                ...(staticTextFontFamily !== "" && {
+                  fontFamily: `var(--wp--preset--font-family--${staticTextFontFamily})`,
+                }),
+                fontWeight: staticTextFontWeight,
+                fontStyle: staticTextFontStyle,
               }}
             >
               {staticText}{" "}
