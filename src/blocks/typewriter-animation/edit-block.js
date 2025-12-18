@@ -29,6 +29,7 @@ import AnimationSpeedSettings from "./settings/animation-speed-settings";
 import StaticTextColorSettings from "./settings/static-text-color-settings";
 import AnimatedTextColorSettings from "./settings/animated-text-color-settings";
 import AnimatedTextTypographyGroupSettings from "./settings/animated-text-typography/typography-group-settings";
+import StaticTextTypographyGroupSettings from "./settings/static-text-typography/typography-group-settings";
 
 // Global store used only at editor runtime (never saved in database)
 let uniqueIds = [];
@@ -181,6 +182,10 @@ export default function EditBlock({ attributes, setAttributes }) {
                     attributes={attributes}
                     setAttributes={setAttributes}
                   ></AnimatedTextTypographyGroupSettings>
+                  <StaticTextTypographyGroupSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></StaticTextTypographyGroupSettings>
                 </>
               );
             }

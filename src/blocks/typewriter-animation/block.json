@@ -53,6 +53,18 @@
     "animatedTextFontStyle": {
       "type": "string",
       "default": "normal"
+    },
+    "staticTextFontFamily": {
+      "type": "string",
+      "default": ""
+    },
+    "staticTextFontWeight": {
+      "type": "number",
+      "default": 400
+    },
+    "staticTextFontStyle": {
+      "type": "string",
+      "default": "normal"
     }
   },
   "supports": {
