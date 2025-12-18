@@ -42,15 +42,15 @@
       "type": "string",
       "default": "#000000"
     },
-    "textFontFamily": {
+    "animatedTextFontFamily": {
       "type": "string",
       "default": ""
     },
-    "textFontWeight": {
+    "animatedTextFontWeight": {
       "type": "number",
       "default": 400
     },
-    "textFontStyle": {
+    "animatedTextFontStyle": {
       "type": "string",
       "default": "normal"
     }

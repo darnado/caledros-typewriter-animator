@@ -28,7 +28,11 @@ export default function FontStyleSettings({
   getAvailableFontWeights,
   doesFontExist,
 }) {
-  const { textFontFamily, textFontStyle, textFontWeight } = attributes;
+  const {
+    animatedTextFontFamily,
+    animatedTextFontStyle,
+    animatedTextFontWeight,
+  } = attributes;
 
   // Default font styles
   const defaultFontStyles = [
@@ -37,7 +41,7 @@ export default function FontStyleSettings({
   ];
 
   // Create options array for the controller
-  const fontStyleOptions = getAvailableFontStyles(textFontFamily)?.map(
+  const fontStyleOptions = getAvailableFontStyles(animatedTextFontFamily)?.map(
     (styleValue) => {
       return {
         label: `${styleValue[0].toUpperCase()}${styleValue.slice(1)}`,
@@ -51,24 +55,26 @@ export default function FontStyleSettings({
       __next40pxDefaultSize
       __nextHasNoMarginBottom
       help={__("Select the font style.", "typewriter-animation-block")}
-      value={textFontStyle}
+      value={animatedTextFontStyle}
       options={
         fontStyleOptions.length === 0 ? defaultFontStyles : fontStyleOptions
       }
       onChange={(newFontStyle) => {
-        const availableFontWeights = doesFontExist(textFontFamily)
-          ? getAvailableFontWeights(textFontFamily, newFontStyle)
+        const availableFontWeights = doesFontExist(animatedTextFontFamily)
+          ? getAvailableFontWeights(animatedTextFontFamily, newFontStyle)
           : [];
 
-        const newFontWeight = availableFontWeights.includes(textFontWeight)
-          ? textFontWeight
+        const newFontWeight = availableFontWeights.includes(
+          animatedTextFontWeight
+        )
+          ? animatedTextFontWeight
           : availableFontWeights[0];
 
         setAttributes({
-          textFontStyle: newFontStyle,
-          ...(doesFontExist(textFontFamily) &&
-            textFontWeight !== newFontWeight && {
-              textFontWeight: newFontWeight,
+          animatedTextFontStyle: newFontStyle,
+          ...(doesFontExist(animatedTextFontFamily) &&
+            animatedTextFontWeight !== newFontWeight && {
+              animatedTextFontWeight: newFontWeight,
             }),
         });
       }}

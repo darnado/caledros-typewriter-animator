@@ -29,7 +29,11 @@ export default function FontFamilySettings({
   getAvailableFontWeights,
   doesFontExist,
 }) {
-  const { textFontFamily, textFontWeight, textFontStyle } = attributes;
+  const {
+    animatedTextFontFamily,
+    animatedTextFontWeight,
+    animatedTextFontStyle,
+  } = attributes;
 
   // Recover theme fonts and custom fonts
   const themeFonts =
@@ -53,7 +57,7 @@ export default function FontFamilySettings({
       __next40pxDefaultSize
       __nextHasNoMarginBottom
       help={__("Select the font family.", "typewriter-animation-block")}
-      value={textFontFamily}
+      value={animatedTextFontFamily}
       options={fontOptions}
       onChange={(newFontFamily) => {
         // Get available font styles for the new font family and update if necessary
@@ -61,8 +65,8 @@ export default function FontFamilySettings({
           ? getAvailableFontStyles(newFontFamily)
           : [];
 
-        const newFontStyle = availableFontStyles.includes(textFontStyle)
-          ? textFontStyle
+        const newFontStyle = availableFontStyles.includes(animatedTextFontStyle)
+          ? animatedTextFontStyle
           : availableFontStyles[0];
 
         // Get available font weights for the new font family and update if necessary
@@ -70,19 +74,21 @@ export default function FontFamilySettings({
           ? getAvailableFontWeights(newFontFamily, newFontStyle)
           : [];
 
-        const newFontWeight = availableFontWeights.includes(textFontWeight)
-          ? textFontWeight
+        const newFontWeight = availableFontWeights.includes(
+          animatedTextFontWeight
+        )
+          ? animatedTextFontWeight
           : availableFontWeights[0];
 
         setAttributes({
-          textFontFamily: newFontFamily,
+          animatedTextFontFamily: newFontFamily,
           ...(doesFontExist(newFontFamily) &&
-            newFontStyle !== textFontStyle && {
-              textFontStyle: newFontStyle,
+            newFontStyle !== animatedTextFontStyle && {
+              animatedTextFontStyle: newFontStyle,
             }),
           ...(doesFontExist(newFontFamily) &&
-            newFontWeight !== textFontWeight && {
-              textFontWeight: newFontWeight,
+            newFontWeight !== animatedTextFontWeight && {
+              animatedTextFontWeight: newFontWeight,
             }),
         });
       }}

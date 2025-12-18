@@ -28,7 +28,7 @@ import HideStaticTextSettings from "./settings/hide-static-text";
 import AnimationSpeedSettings from "./settings/animation-speed-settings";
 import StaticTextColorSettings from "./settings/static-text-color-settings";
 import AnimatedTextColorSettings from "./settings/animated-text-color-settings";
-import TypographyGroupSettings from "./settings/typography/typography-group-settings";
+import AnimatedTextTypographyGroupSettings from "./settings/typography/typography-group-settings";
 
 // Global store used only at editor runtime (never saved in database)
 let uniqueIds = [];
@@ -42,9 +42,9 @@ export default function EditBlock({ attributes, setAttributes }) {
     animationSpeed,
     staticTextColor,
     animatedTextColor,
-    textFontFamily,
-    textFontWeight,
-    textFontStyle,
+    animatedTextFontFamily,
+    animatedTextFontWeight,
+    animatedTextFontStyle,
   } = attributes;
 
   const rootBlockRef = useRef(null);
@@ -116,9 +116,9 @@ export default function EditBlock({ attributes, setAttributes }) {
     uniqueId,
     animatedPhrases,
     animationSpeed,
-    textFontFamily,
-    textFontStyle,
-    textFontWeight,
+    animatedTextFontFamily,
+    animatedTextFontStyle,
+    animatedTextFontWeight,
   ]);
 
   const blockProps = useBlockProps({ ref: rootBlockRef });
@@ -177,10 +177,10 @@ export default function EditBlock({ attributes, setAttributes }) {
             if (tab.name === "style") {
               return (
                 <>
-                  <TypographyGroupSettings
+                  <AnimatedTextTypographyGroupSettings
                     attributes={attributes}
                     setAttributes={setAttributes}
-                  ></TypographyGroupSettings>
+                  ></AnimatedTextTypographyGroupSettings>
                 </>
               );
             }
@@ -198,11 +198,6 @@ export default function EditBlock({ attributes, setAttributes }) {
               className="twab__static-text"
               style={{
                 color: staticTextColor,
-                ...(textFontFamily !== "" && {
-                  fontFamily: `var(--wp--preset--font-family--${textFontFamily})`,
-                }),
-                fontWeight: textFontWeight,
-                fontStyle: textFontStyle,
               }}
             >
               {staticText}{" "}
@@ -213,22 +208,22 @@ export default function EditBlock({ attributes, setAttributes }) {
             className="twab__animation-text"
             style={{
               color: animatedTextColor,
-              ...(textFontFamily !== "" && {
-                fontFamily: `var(--wp--preset--font-family--${textFontFamily})`,
+              ...(animatedTextFontFamily !== "" && {
+                fontFamily: `var(--wp--preset--font-family--${animatedTextFontFamily})`,
               }),
-              fontWeight: textFontWeight,
-              fontStyle: textFontStyle,
+              fontWeight: animatedTextFontWeight,
+              fontStyle: animatedTextFontStyle,
             }}
           ></span>
           <span
             className="twab__cursor"
             style={{
               color: animatedTextColor,
-              ...(textFontFamily !== "" && {
-                fontFamily: `var(--wp--preset--font-family--${textFontFamily})`,
+              ...(animatedTextFontFamily !== "" && {
+                fontFamily: `var(--wp--preset--font-family--${animatedTextFontFamily})`,
               }),
-              fontWeight: textFontWeight,
-              fontStyle: textFontStyle,
+              fontWeight: animatedTextFontWeight,
+              fontStyle: animatedTextFontStyle,
             }}
           >
             |

@@ -26,7 +26,11 @@ export default function FontWeightSettings({
   setAttributes,
   getAvailableFontWeights,
 }) {
-  const { textFontFamily, textFontWeight, textFontStyle } = attributes;
+  const {
+    animatedTextFontFamily,
+    animatedTextFontWeight,
+    animatedTextFontStyle,
+  } = attributes;
 
   // Default font weights
   const defaultFontWeights = [
@@ -43,8 +47,8 @@ export default function FontWeightSettings({
 
   // Define the font weight options for the controller
   const fontWeightOptions = getAvailableFontWeights(
-    textFontFamily,
-    textFontStyle
+    animatedTextFontFamily,
+    animatedTextFontStyle
   )?.map((weightValue) => {
     return { label: `${weightValue}`, value: weightValue };
   });
@@ -54,11 +58,11 @@ export default function FontWeightSettings({
       __next40pxDefaultSize
       __nextHasNoMarginBottom
       help={__("Select the font weight.", "typewriter-animation-block")}
-      value={textFontWeight}
+      value={animatedTextFontWeight}
       options={fontWeightOptions || defaultFontWeights}
       onChange={(newValue) => {
         setAttributes({
-          textFontWeight: parseInt(newValue),
+          animatedTextFontWeight: parseInt(newValue),
         });
       }}
     />

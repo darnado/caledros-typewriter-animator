@@ -25,7 +25,10 @@ import FontFamilySettings from "./font-family-settings";
 import FontWeightSettings from "./font-weight-settings";
 import FontStyleSettings from "./font-style-settings";
 
-export default function TypographyGroupSettings({ attributes, setAttributes }) {
+export default function AnimatedTextTypographyGroupSettings({
+  attributes,
+  setAttributes,
+}) {
   const [registeredFonts] = useSettings("typography.fontFamilies");
   const { theme = [], custom = [] } = registeredFonts || {};
   const allFonts = [...theme, ...custom];
@@ -69,7 +72,7 @@ export default function TypographyGroupSettings({ attributes, setAttributes }) {
 
   return (
     <PanelBody
-      title={__("Typography", "typewriter-animation-block")}
+      title={__("Typography (Animated Text)", "typewriter-animation-block")}
       initialOpen={false}
     >
       <FontFamilySettings
