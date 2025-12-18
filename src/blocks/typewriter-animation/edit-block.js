@@ -28,7 +28,7 @@ import HideStaticTextSettings from "./settings/hide-static-text";
 import AnimationSpeedSettings from "./settings/animation-speed-settings";
 import StaticTextColorSettings from "./settings/static-text-color-settings";
 import AnimatedTextColorSettings from "./settings/animated-text-color-settings";
-import AnimatedTextTypographyGroupSettings from "./settings/typography/typography-group-settings";
+import AnimatedTextTypographyGroupSettings from "./settings/animated-text-typography/typography-group-settings";
 
 // Global store used only at editor runtime (never saved in database)
 let uniqueIds = [];
