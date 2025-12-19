@@ -39,6 +39,9 @@ function twab_render_cb($attributes){
     $animatedTextFontFamily = sanitize_text_field($attributes['animatedTextFontFamily'] ?? '');  
     $animatedTextFontWeight = intval($attributes['animatedTextFontWeight'] ?? 400);
     $animatedTextFontStyle = sanitize_text_field($attributes['animatedTextFontStyle'] ?? 'normal'); 
+    $staticTextFontFamily = sanitize_text_field($attributes['staticTextFontFamily'] ?? '');  
+    $staticTextFontWeight = intval($attributes['staticTextFontWeight'] ?? 400);
+    $staticTextFontStyle = sanitize_text_field($attributes['staticTextFontStyle'] ?? 'normal'); 
 
     // Sanitize array 
     if ( is_array( $animatedPhrases ) ) {
@@ -49,10 +52,7 @@ function twab_render_cb($attributes){
     $wp_context = [    
         "uniqueId" => $uniqueId,
         "animatedPhrases" => $animatedPhrases,
-        "animationSpeed" => $animationSpeed,
-        "animatedTextFontFamily" => $animatedTextFontFamily,
-        "animatedTextFontWeight" => $animatedTextFontWeight,
-        "animatedTextFontStyle" => $animatedTextFontStyle,
+        "animationSpeed" => $animationSpeed
     ];
 
     $wp_context_json = htmlspecialchars(json_encode($wp_context), ENT_QUOTES, 'UTF-8');
@@ -65,7 +65,7 @@ function twab_render_cb($attributes){
     <div data-wp-interactive="typewriter-animation" data-wp-context='<?php echo esc_attr($wp_context_json);?>' data-wp-init="callbacks.onInit">
         <h2 class="twab">
             <?php if( !$hideStaticText ): ?>
-                <span class="twab__static-text" style="color: <?php echo esc_attr($staticTextColor); ?>">
+                <span class="twab__static-text" style="color: <?php echo esc_attr($staticTextColor); ?>; font-weight: <?php echo esc_attr($staticTextFontWeight); ?>; font-style: <?php echo esc_attr($staticTextFontStyle); ?> <?php if (($staticTextFontFamily!=="")) echo '; font-family: var(--wp--preset--font-family--' . esc_attr($staticTextFontFamily) . ');' ?>">
                     <?php echo esc_html( $staticText ); ?>
                 </span>
             <?php endif; ?>    
