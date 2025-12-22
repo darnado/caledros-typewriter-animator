@@ -65,6 +65,10 @@
     "staticTextFontStyle": {
       "type": "string",
       "default": "normal"
+    },
+    "textFontSize": {
+      "type": "string",
+      "default": "var(--wp--preset--font-size--medium)"
     }
   },
   "supports": {
