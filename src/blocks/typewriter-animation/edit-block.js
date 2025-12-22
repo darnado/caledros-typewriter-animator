@@ -170,6 +170,12 @@ export default function EditBlock({ attributes, setAttributes }) {
                     attributes={attributes}
                     setAttributes={setAttributes}
                   ></AnimationSpeedSettings>
+                </>
+              );
+            }
+            if (tab.name === "style") {
+              return (
+                <>
                   <StaticTextColorSettings
                     attributes={attributes}
                     setAttributes={setAttributes}
@@ -178,12 +184,6 @@ export default function EditBlock({ attributes, setAttributes }) {
                     attributes={attributes}
                     setAttributes={setAttributes}
                   ></AnimatedTextColorSettings>
-                </>
-              );
-            }
-            if (tab.name === "style") {
-              return (
-                <>
                   <AnimatedTextTypographyGroupSettings
                     attributes={attributes}
                     setAttributes={setAttributes}
