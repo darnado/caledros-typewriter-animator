@@ -182,6 +182,10 @@ export default function EditBlock({ attributes, setAttributes }) {
                     attributes={attributes}
                     setAttributes={setAttributes}
                   ></StaticTextColorSettings>
+                  <StaticTextTypographyGroupSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></StaticTextTypographyGroupSettings>
                   <AnimatedTextColorSettings
                     attributes={attributes}
                     setAttributes={setAttributes}
@@ -190,10 +194,6 @@ export default function EditBlock({ attributes, setAttributes }) {
                     attributes={attributes}
                     setAttributes={setAttributes}
                   ></AnimatedTextTypographyGroupSettings>
-                  <StaticTextTypographyGroupSettings
-                    attributes={attributes}
-                    setAttributes={setAttributes}
-                  ></StaticTextTypographyGroupSettings>
                   <FontSizeSettings
                     attributes={attributes}
                     setAttributes={setAttributes}

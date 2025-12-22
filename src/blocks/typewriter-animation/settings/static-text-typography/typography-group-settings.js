@@ -72,7 +72,7 @@ export default function StaticTextTypographyGroupSettings({
 
   return (
     <PanelBody
-      title={__("Typography (Static Text)", "typewriter-animation-block")}
+      title={__("Static text typography", "typewriter-animation-block")}
       initialOpen={false}
     >
       <FontFamilySettings

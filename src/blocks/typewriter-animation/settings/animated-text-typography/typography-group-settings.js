@@ -72,7 +72,7 @@ export default function AnimatedTextTypographyGroupSettings({
 
   return (
     <PanelBody
-      title={__("Typography (Animated Text)", "typewriter-animation-block")}
+      title={__("Animated text typography", "typewriter-animation-block")}
       initialOpen={false}
     >
       <FontFamilySettings
