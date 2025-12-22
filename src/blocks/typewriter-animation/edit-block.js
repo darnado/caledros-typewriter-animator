@@ -30,6 +30,7 @@ import StaticTextColorSettings from "./settings/static-text-color-settings";
 import AnimatedTextColorSettings from "./settings/animated-text-color-settings";
 import AnimatedTextTypographyGroupSettings from "./settings/animated-text-typography/typography-group-settings";
 import StaticTextTypographyGroupSettings from "./settings/static-text-typography/typography-group-settings";
+import FontSizeSettings from "./settings/font-size-settings";
 
 // Global store used only at editor runtime (never saved in database)
 let uniqueIds = [];
@@ -49,6 +50,7 @@ export default function EditBlock({ attributes, setAttributes }) {
     staticTextFontFamily,
     staticTextFontWeight,
     staticTextFontStyle,
+    textFontSize,
   } = attributes;
 
   const rootBlockRef = useRef(null);
@@ -192,6 +194,10 @@ export default function EditBlock({ attributes, setAttributes }) {
                     attributes={attributes}
                     setAttributes={setAttributes}
                   ></StaticTextTypographyGroupSettings>
+                  <FontSizeSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></FontSizeSettings>
                 </>
               );
             }
@@ -214,6 +220,7 @@ export default function EditBlock({ attributes, setAttributes }) {
                 }),
                 fontWeight: staticTextFontWeight,
                 fontStyle: staticTextFontStyle,
+                fontSize: textFontSize,
               }}
             >
               {staticText}{" "}
@@ -229,6 +236,7 @@ export default function EditBlock({ attributes, setAttributes }) {
               }),
               fontWeight: animatedTextFontWeight,
               fontStyle: animatedTextFontStyle,
+              fontSize: textFontSize,
             }}
           ></span>
           <span
@@ -240,6 +248,7 @@ export default function EditBlock({ attributes, setAttributes }) {
               }),
               fontWeight: animatedTextFontWeight,
               fontStyle: animatedTextFontStyle,
+              fontSize: textFontSize,
             }}
           >
             |

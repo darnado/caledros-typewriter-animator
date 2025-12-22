@@ -68,7 +68,7 @@
     },
     "textFontSize": {
       "type": "string",
-      "default": "var(--wp--preset--font-size--medium)"
+      "default": "50px"
     }
   },
   "supports": {
