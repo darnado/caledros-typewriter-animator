@@ -161,7 +161,7 @@ export default function FontSizeSettings({ attributes, setAttributes }) {
         />
       )}
       {useCustomFontSize && (
-        <div className="cbb-editor__grid">
+        <div className="twab-editor__grid">
           <RangeControl
             __next40pxDefaultSize
             __nextHasNoMarginBottom
