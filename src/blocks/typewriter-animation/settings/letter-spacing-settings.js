@@ -75,7 +75,7 @@ export default function LetterSpacingSettings({ attributes, setAttributes }) {
         }}
       />
       {!useNormalLetterSpacing && (
-        <div className="cbb-editor__grid">
+        <div className="twab-editor__grid">
           <RangeControl
             __next40pxDefaultSize
             __nextHasNoMarginBottom

@@ -227,6 +227,9 @@ export default function EditBlock({ attributes, setAttributes }) {
                 fontWeight: staticTextFontWeight,
                 fontStyle: staticTextFontStyle,
                 fontSize: textFontSize,
+                ...(textLetterSpacing !== "normal" && {
+                  letterSpacing: textLetterSpacing,
+                }),
               }}
             >
               {staticText}{" "}
@@ -243,6 +246,9 @@ export default function EditBlock({ attributes, setAttributes }) {
               fontWeight: animatedTextFontWeight,
               fontStyle: animatedTextFontStyle,
               fontSize: textFontSize,
+              ...(textLetterSpacing !== "normal" && {
+                letterSpacing: textLetterSpacing,
+              }),
             }}
           ></span>
           <span
@@ -255,6 +261,9 @@ export default function EditBlock({ attributes, setAttributes }) {
               fontWeight: animatedTextFontWeight,
               fontStyle: animatedTextFontStyle,
               fontSize: textFontSize,
+              ...(textLetterSpacing !== "normal" && {
+                letterSpacing: textLetterSpacing,
+              }),
             }}
           >
             |
