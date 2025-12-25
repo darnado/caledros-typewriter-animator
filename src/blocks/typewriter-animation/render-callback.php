@@ -43,6 +43,7 @@ function twab_render_cb($attributes){
     $staticTextFontWeight = intval($attributes['staticTextFontWeight'] ?? 400);
     $staticTextFontStyle = sanitize_text_field($attributes['staticTextFontStyle'] ?? 'normal'); 
     $textFontSize = sanitize_text_field($attributes['textFontSize'] ?? '50px'); 
+    $textLetterSpacing = sanitize_text_field($attributes['textLetterSpacing'] ?? 'normal'); 
 
     // Sanitize array 
     if ( is_array( $animatedPhrases ) ) {
@@ -66,12 +67,12 @@ function twab_render_cb($attributes){
     <div data-wp-interactive="typewriter-animation" data-wp-context='<?php echo esc_attr($wp_context_json);?>' data-wp-init="callbacks.onInit">
         <h2 class="twab">
             <?php if( !$hideStaticText ): ?>
-                <span class="twab__static-text" style="color: <?php echo esc_attr($staticTextColor); ?>; font-weight: <?php echo esc_attr($staticTextFontWeight); ?>; font-style: <?php echo esc_attr($staticTextFontStyle); ?> <?php if (($staticTextFontFamily!=="")) echo '; font-family: var(--wp--preset--font-family--' . esc_attr($staticTextFontFamily) . ')' ?>; font-size: <?php echo esc_attr($textFontSize); ?>">
+                <span class="twab__static-text" style="color: <?php echo esc_attr($staticTextColor); ?>; font-weight: <?php echo esc_attr($staticTextFontWeight); ?>; font-style: <?php echo esc_attr($staticTextFontStyle); ?> <?php if (($staticTextFontFamily!=="")) echo '; font-family: var(--wp--preset--font-family--' . esc_attr($staticTextFontFamily) . ')' ?>; font-size: <?php echo esc_attr($textFontSize); ?>; letter-spacing: <?php echo esc_attr($textLetterSpacing); ?>">
                     <?php echo esc_html( $staticText ); ?>
                 </span>
             <?php endif; ?>    
-            <span id="<?php echo esc_attr($uniqueId); ?>" class="twab__animation-text" style="color: <?php echo esc_attr($animatedTextColor); ?>; font-weight: <?php echo esc_attr($animatedTextFontWeight); ?>; font-style: <?php echo esc_attr($animatedTextFontStyle); ?> <?php if (($animatedTextFontFamily!=="")) echo '; font-family: var(--wp--preset--font-family--' . esc_attr($animatedTextFontFamily) . ')' ?>; font-size: <?php echo esc_attr($textFontSize); ?>">
-            </span><span class="twab__cursor" style="color: <?php echo esc_attr($animatedTextColor); ?>; font-weight: <?php echo esc_attr($animatedTextFontWeight); ?>; font-style: <?php echo esc_attr($animatedTextFontStyle); ?> <?php if (($animatedTextFontFamily!=="")) echo '; font-family: var(--wp--preset--font-family--' . esc_attr($animatedTextFontFamily) . ')' ?>; font-size: <?php echo esc_attr($textFontSize); ?>">|</span>
+            <span id="<?php echo esc_attr($uniqueId); ?>" class="twab__animation-text" style="color: <?php echo esc_attr($animatedTextColor); ?>; font-weight: <?php echo esc_attr($animatedTextFontWeight); ?>; font-style: <?php echo esc_attr($animatedTextFontStyle); ?> <?php if (($animatedTextFontFamily!=="")) echo '; font-family: var(--wp--preset--font-family--' . esc_attr($animatedTextFontFamily) . ')' ?>; font-size: <?php echo esc_attr($textFontSize); ?>; letter-spacing: <?php echo esc_attr($textLetterSpacing); ?>">
+            </span><span class="twab__cursor" style="color: <?php echo esc_attr($animatedTextColor); ?>; font-weight: <?php echo esc_attr($animatedTextFontWeight); ?>; font-style: <?php echo esc_attr($animatedTextFontStyle); ?> <?php if (($animatedTextFontFamily!=="")) echo '; font-family: var(--wp--preset--font-family--' . esc_attr($animatedTextFontFamily) . ')' ?>; font-size: <?php echo esc_attr($textFontSize); ?>; letter-spacing: <?php echo esc_attr($textLetterSpacing); ?>">|</span>
         </h2>
     </div>
     <?php 
