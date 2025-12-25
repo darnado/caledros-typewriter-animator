@@ -1,5 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 
@@ -32,8 +32,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return void Loads the custom CSS.
  */
 
-function twab_enqueue_editor_styles() {
-    if (is_admin()){
+function twab_enqueue_editor_styles()
+{
+    if (is_admin()) {
         wp_enqueue_style('twab-editor-css', plugin_dir_url(dirname(__FILE__)) . 'styles/dist/editor-styles.min.css', array(), '1.0');
     }
 }

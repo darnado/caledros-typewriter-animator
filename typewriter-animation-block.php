@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: Typewriter Animation Block
  * Plugin URI: https://caledrosforge.com/
@@ -32,7 +33,7 @@
  * with Typewriter Animation Block; if not, see <https://www.gnu.org/licenses/>.
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 

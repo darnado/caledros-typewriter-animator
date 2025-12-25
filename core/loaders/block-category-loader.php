@@ -1,5 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 
@@ -33,12 +33,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return array Modified block categories including the custom category.
  */
 
-function twab_register_block_category( $categories ) {	
-    array_unshift( $categories, [        
+function twab_register_block_category($categories)
+{
+    array_unshift($categories, [
         'slug'  => 'typewriter-animation-block',
-        'title' => __( 'Typewriter Animation Block', 'typewriter-animation-block' )            
-    ] );
-	return $categories;
+        'title' => __('Typewriter Animation Block', 'typewriter-animation-block')
+    ]);
+    return $categories;
 }
 
-add_filter( 'block_categories_all', 'twab_register_block_category' );
+add_filter('block_categories_all', 'twab_register_block_category');
