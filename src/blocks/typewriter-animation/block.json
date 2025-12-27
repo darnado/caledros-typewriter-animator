@@ -73,6 +73,10 @@
     "textLetterSpacing": {
       "type": "string",
       "default": "normal"
+    },
+    "tagName": {
+      "type": "string",
+      "default": "h2"
     }
   },
   "supports": {

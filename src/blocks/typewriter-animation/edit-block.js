@@ -32,6 +32,7 @@ import AnimatedTextTypographyGroupSettings from "./settings/animated-text-typogr
 import StaticTextTypographyGroupSettings from "./settings/static-text-typography/typography-group-settings";
 import FontSizeSettings from "./settings/font-size-settings";
 import LetterSpacingSettings from "./settings/letter-spacing-settings";
+import TagNameSettings from "./settings/tag-name-settings";
 
 // Global store used only at editor runtime (never saved in database)
 let uniqueIds = [];
@@ -53,6 +54,7 @@ export default function EditBlock({ attributes, setAttributes }) {
     staticTextFontStyle,
     textFontSize,
     textLetterSpacing,
+    tagName,
   } = attributes;
 
   const rootBlockRef = useRef(null);
@@ -130,6 +132,7 @@ export default function EditBlock({ attributes, setAttributes }) {
     staticTextFontFamily,
     staticTextFontStyle,
     staticTextFontWeight,
+    tagName,
   ]);
 
   const blockProps = useBlockProps({ ref: rootBlockRef });
@@ -210,6 +213,10 @@ export default function EditBlock({ attributes, setAttributes }) {
                     attributes={attributes}
                     setAttributes={setAttributes}
                   ></AnimationSpeedSettings>
+                  <TagNameSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></TagNameSettings>
                 </>
               );
             }
