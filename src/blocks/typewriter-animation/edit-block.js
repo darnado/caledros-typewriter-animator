@@ -170,10 +170,6 @@ export default function EditBlock({ attributes, setAttributes }) {
                     attributes={attributes}
                     setAttributes={setAttributes}
                   ></HideStaticTextSettings>
-                  <AnimationSpeedSettings
-                    attributes={attributes}
-                    setAttributes={setAttributes}
-                  ></AnimationSpeedSettings>
                 </>
               );
             }
@@ -208,7 +204,14 @@ export default function EditBlock({ attributes, setAttributes }) {
               );
             }
             if (tab.name === "additional") {
-              return <></>;
+              return (
+                <>
+                  <AnimationSpeedSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></AnimationSpeedSettings>
+                </>
+              );
             }
             return null;
           }}
