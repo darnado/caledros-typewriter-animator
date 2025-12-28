@@ -58,6 +58,7 @@ export default function EditBlock({ attributes, setAttributes }) {
   } = attributes;
 
   const rootBlockRef = useRef(null);
+  const TagName = tagName;
 
   // Function to generate a persistent ID
   const generateId = () =>
@@ -82,7 +83,7 @@ export default function EditBlock({ attributes, setAttributes }) {
     if (!rootBlockRef.current || !uniqueId) return;
 
     const typewriterElement = rootBlockRef.current.querySelector(
-      `h2.twab span#${uniqueId}`
+      `${tagName}.twab span#${uniqueId}`
     );
 
     let isCancelled = false;
@@ -225,7 +226,7 @@ export default function EditBlock({ attributes, setAttributes }) {
         </TabPanel>
       </InspectorControls>
       <div {...blockProps}>
-        <h2 className="twab">
+        <TagName className="twab">
           {!hideStaticText && (
             <span
               className="twab__static-text"
@@ -278,7 +279,7 @@ export default function EditBlock({ attributes, setAttributes }) {
           >
             |
           </span>
-        </h2>
+        </TagName>
       </div>
     </>
   );
