@@ -58,7 +58,10 @@ export default function EditBlock({ attributes, setAttributes }) {
   } = attributes;
 
   const rootBlockRef = useRef(null);
-  const TagName = tagName;
+
+  // Allowed tag names
+  const allowedTags = ["h1", "h2", "h3", "h4", "h5", "h6", "p"];
+  const TagName = allowedTags.includes(tagName) ? tagName : "h2";
 
   // Function to generate a persistent ID
   const generateId = () =>
