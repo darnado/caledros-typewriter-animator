@@ -57,12 +57,12 @@ export default function LetterSpacingSettings({ attributes, setAttributes }) {
 
   return (
     <PanelBody
-      title={__("Letter spacing", "caledros-basic-blocks")}
+      title={__("Letter spacing", "typewriter-animation-block")}
       initialOpen={false}
     >
       <ToggleControl
         __nextHasNoMarginBottom
-        label={__("Use normal letter spacing", "caledros-basic-blocks")}
+        label={__("Use normal letter spacing", "typewriter-animation-block")}
         checked={useNormalLetterSpacing}
         onChange={() => {
           const temporalValue = useNormalLetterSpacing ? "0" : "normal";
@@ -81,7 +81,7 @@ export default function LetterSpacingSettings({ attributes, setAttributes }) {
             __nextHasNoMarginBottom
             help={__(
               `Please select the custom letter spacing (${letterSpacingUnit}).`,
-              "caledros-basic-blocks"
+              "typewriter-animation-block"
             )}
             value={parseFloat(textLetterSpacing) || 0}
             max={letterSpacingUnit === "px" ? 50 : 10}

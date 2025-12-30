@@ -128,7 +128,7 @@ export default function FontSizeSettings({ attributes, setAttributes }) {
 
   return (
     <PanelBody
-      title={__("Font size", "caledros-basic-blocks")}
+      title={__("Font size", "typewriter-animation-block")}
       initialOpen={false}
     >
       <ToggleControl
@@ -143,7 +143,7 @@ export default function FontSizeSettings({ attributes, setAttributes }) {
         <SelectControl
           __next40pxDefaultSize
           __nextHasNoMarginBottom
-          help={__("Select the font size.", "caledros-basic-blocks")}
+          help={__("Select the font size.", "typewriter-animation-block")}
           value={
             registeredFontPresets().includes(textFontSize) ? textFontSize : ""
           }
@@ -167,7 +167,7 @@ export default function FontSizeSettings({ attributes, setAttributes }) {
             __nextHasNoMarginBottom
             help={__(
               `Please select the custom font size (${fontSizeUnit}).`,
-              "caledros-basic-blocks"
+              "typewriter-animation-block"
             )}
             value={
               registeredFontPresets().includes(textFontSize)

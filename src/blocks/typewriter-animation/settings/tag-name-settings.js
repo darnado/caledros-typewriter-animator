@@ -26,7 +26,7 @@ export default function TagNameSettings({ attributes, setAttributes }) {
 
   return (
     <PanelBody
-      title={__("Tag name", "caledros-basic-blocks")}
+      title={__("Tag name", "typewriter-animation-block")}
       initialOpen={false}
     >
       <SelectControl
