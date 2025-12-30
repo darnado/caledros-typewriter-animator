@@ -29,7 +29,7 @@ if (! defined('ABSPATH')) {
  * Loads the custom CSS styles for the block's inspector
  * controls in the Gutenberg editor.
  * 
- * @return void Loads the custom CSS.
+ * @return void
  */
 
 function twab_enqueue_editor_styles()

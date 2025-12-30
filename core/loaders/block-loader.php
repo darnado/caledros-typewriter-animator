@@ -29,7 +29,7 @@ if (! defined('ABSPATH')) {
  * Adds the custom Typewriter Animation Block to the 
  * WordPress Gutenberg editor.
  * 
- * @return void Loads and registers the custom block.
+ * @return void
  */
 
 function twab_block_loader()

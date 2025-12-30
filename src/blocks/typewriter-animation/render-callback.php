@@ -23,9 +23,16 @@ if (! defined('ABSPATH')) {
  * with Typewriter Animation Block; if not, see <https://www.gnu.org/licenses/>.
  */
 
-?>
-
-<?php
+/**
+ * Renders the Typewriter Animation block on the frontend.
+ *
+ * Generates the HTML markup for the typewriter animation block,
+ * sanitizes block attributes, prepares the interactivity API,
+ * and returns the buffered output for server-side rendering.
+ *
+ * @param array $attributes Block attributes passed from the editor.
+ * @return string Rendered HTML markup for the block.
+ */
 
 function twab_render_cb($attributes)
 {
