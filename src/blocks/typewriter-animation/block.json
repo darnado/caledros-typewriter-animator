@@ -10,14 +10,80 @@
   "version": "1.0",
   "textdomain": "typewriter-animation-block",
   "editorScript": "file:./index.js",
+  "viewScriptModule": "file:./view.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
   "example": {},
-  "attributes": {},
+  "attributes": {
+    "uniqueId": {
+      "type": "string"
+    },
+    "staticText": {
+      "type": "string",
+      "default": "Crafting something "
+    },
+    "animatedPhrases": {
+      "type": "array",
+      "default": ["incredible", "engaging", "unique", "surprising"]
+    },
+    "hideStaticText": {
+      "type": "boolean",
+      "default": false
+    },
+    "animationSpeed": {
+      "type": "number",
+      "default": 100
+    },
+    "staticTextColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "animatedTextColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "animatedTextFontFamily": {
+      "type": "string",
+      "default": ""
+    },
+    "animatedTextFontWeight": {
+      "type": "number",
+      "default": 400
+    },
+    "animatedTextFontStyle": {
+      "type": "string",
+      "default": "normal"
+    },
+    "staticTextFontFamily": {
+      "type": "string",
+      "default": ""
+    },
+    "staticTextFontWeight": {
+      "type": "number",
+      "default": 400
+    },
+    "staticTextFontStyle": {
+      "type": "string",
+      "default": "normal"
+    },
+    "textFontSize": {
+      "type": "string",
+      "default": "50px"
+    },
+    "textLetterSpacing": {
+      "type": "string",
+      "default": "normal"
+    },
+    "tagName": {
+      "type": "string",
+      "default": "h2"
+    }
+  },
   "supports": {
     "align": false,
     "alignWide": false,
     "className": false,
-    "html": false
+    "html": false,
+    "interactivity": true
   }
 }

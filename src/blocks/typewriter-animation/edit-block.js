@@ -20,15 +20,270 @@
 
 import { useBlockProps, InspectorControls } from "@wordpress/block-editor";
 import { __ } from "@wordpress/i18n";
+import { useRef, useEffect } from "@wordpress/element";
+import { TabPanel } from "@wordpress/components";
+import StaticTextSettings from "./settings/static-text-settings";
+import AnimatedPhrasesSettings from "./settings/animated-phrases-settings";
+import HideStaticTextSettings from "./settings/hide-static-text";
+import AnimationSpeedSettings from "./settings/animation-speed-settings";
+import StaticTextColorSettings from "./settings/static-text-color-settings";
+import AnimatedTextColorSettings from "./settings/animated-text-color-settings";
+import AnimatedTextTypographyGroupSettings from "./settings/animated-text-typography/typography-group-settings";
+import StaticTextTypographyGroupSettings from "./settings/static-text-typography/typography-group-settings";
+import FontSizeSettings from "./settings/font-size-settings";
+import LetterSpacingSettings from "./settings/letter-spacing-settings";
+import TagNameSettings from "./settings/tag-name-settings";
+
+// Global store used only at editor runtime (never saved in database)
+let uniqueIds = [];
 
 export default function EditBlock({ attributes, setAttributes }) {
-  // Block props
-  const blockProps = useBlockProps();
+  const {
+    uniqueId,
+    staticText,
+    animatedPhrases,
+    hideStaticText,
+    animationSpeed,
+    staticTextColor,
+    animatedTextColor,
+    animatedTextFontFamily,
+    animatedTextFontWeight,
+    animatedTextFontStyle,
+    staticTextFontFamily,
+    staticTextFontWeight,
+    staticTextFontStyle,
+    textFontSize,
+    textLetterSpacing,
+    tagName,
+  } = attributes;
+
+  const rootBlockRef = useRef(null);
+
+  // Allowed tag names
+  const allowedTags = ["h1", "h2", "h3", "h4", "h5", "h6", "p"];
+  const TagName = allowedTags.includes(tagName) ? tagName : "h2";
+
+  // Function to generate a persistent ID
+  const generateId = () =>
+    `twab-${Math.random().toString(36).substring(2, 10)}`;
+
+  // Assign a unique ID only if:
+  // - Block is newly created (uniqueId is missing)
+  // - Block was duplicated (uniqueId already exists in uniqueIds[])
+  useEffect(() => {
+    let id = uniqueId;
+
+    if (!id || uniqueIds.includes(id)) {
+      id = generateId();
+      setAttributes({ uniqueId: id });
+    }
+
+    uniqueIds.push(id);
+  }, []); // runs only once per block instance
+
+  // Typewriter Animation effect
+  useEffect(() => {
+    if (!rootBlockRef.current || !uniqueId) return;
+
+    const typewriterElement = rootBlockRef.current.querySelector(
+      `${tagName}.twab span#${uniqueId}`
+    );
+
+    let isCancelled = false;
+
+    const wait = (ms) => new Promise((res) => setTimeout(res, ms));
+
+    let index = 0;
+
+    const loop = async () => {
+      while (!isCancelled) {
+        const word = animatedPhrases[index];
+
+        // Type forward
+        for (let i = 0; i < word.length && !isCancelled; i++) {
+          typewriterElement.innerText = word.slice(0, i + 1);
+          await wait(animationSpeed);
+        }
+
+        await wait(animationSpeed * 10);
+        if (isCancelled) break;
+
+        // Type backward
+        for (let i = word.length; i > 0 && !isCancelled; i--) {
+          typewriterElement.innerText = word.slice(0, i - 1);
+          await wait(animationSpeed);
+        }
+
+        await wait(animationSpeed * 10);
+
+        index = (index + 1) % animatedPhrases.length;
+      }
+    };
+
+    loop();
+
+    // Cleanup to stop old loop
+    return () => {
+      isCancelled = true;
+    };
+  }, [
+    uniqueId,
+    animatedPhrases,
+    animationSpeed,
+    animatedTextFontFamily,
+    animatedTextFontStyle,
+    animatedTextFontWeight,
+    staticTextFontFamily,
+    staticTextFontStyle,
+    staticTextFontWeight,
+    tagName,
+  ]);
+
+  const blockProps = useBlockProps({ ref: rootBlockRef });
 
   return (
     <>
-      <InspectorControls></InspectorControls>
-      <div {...blockProps}>Typewriter animation block</div>
+      <InspectorControls>
+        <TabPanel
+          activeClass="twab-active-tab"
+          tabs={[
+            {
+              name: "content",
+              title: "Content",
+            },
+            {
+              name: "style",
+              title: "Style",
+            },
+            {
+              name: "additional",
+              title: "Additional",
+            },
+          ]}
+        >
+          {(tab) => {
+            if (tab.name === "content") {
+              return (
+                <>
+                  <StaticTextSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></StaticTextSettings>
+                  <AnimatedPhrasesSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></AnimatedPhrasesSettings>
+                  <HideStaticTextSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></HideStaticTextSettings>
+                </>
+              );
+            }
+            if (tab.name === "style") {
+              return (
+                <>
+                  <StaticTextColorSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></StaticTextColorSettings>
+                  <StaticTextTypographyGroupSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></StaticTextTypographyGroupSettings>
+                  <AnimatedTextColorSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></AnimatedTextColorSettings>
+                  <AnimatedTextTypographyGroupSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></AnimatedTextTypographyGroupSettings>
+                  <FontSizeSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></FontSizeSettings>
+                  <LetterSpacingSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></LetterSpacingSettings>
+                </>
+              );
+            }
+            if (tab.name === "additional") {
+              return (
+                <>
+                  <AnimationSpeedSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></AnimationSpeedSettings>
+                  <TagNameSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></TagNameSettings>
+                </>
+              );
+            }
+            return null;
+          }}
+        </TabPanel>
+      </InspectorControls>
+      <div {...blockProps}>
+        <TagName className="twab">
+          {!hideStaticText && (
+            <span
+              className="twab__static-text"
+              style={{
+                color: staticTextColor,
+                ...(staticTextFontFamily !== "" && {
+                  fontFamily: `var(--wp--preset--font-family--${staticTextFontFamily})`,
+                }),
+                fontWeight: staticTextFontWeight,
+                fontStyle: staticTextFontStyle,
+                fontSize: textFontSize,
+                ...(textLetterSpacing !== "normal" && {
+                  letterSpacing: textLetterSpacing,
+                }),
+              }}
+            >
+              {staticText}{" "}
+            </span>
+          )}
+          <span
+            id={uniqueId}
+            className="twab__animation-text"
+            style={{
+              color: animatedTextColor,
+              ...(animatedTextFontFamily !== "" && {
+                fontFamily: `var(--wp--preset--font-family--${animatedTextFontFamily})`,
+              }),
+              fontWeight: animatedTextFontWeight,
+              fontStyle: animatedTextFontStyle,
+              fontSize: textFontSize,
+              ...(textLetterSpacing !== "normal" && {
+                letterSpacing: textLetterSpacing,
+              }),
+            }}
+          ></span>
+          <span
+            className="twab__cursor"
+            style={{
+              color: animatedTextColor,
+              ...(animatedTextFontFamily !== "" && {
+                fontFamily: `var(--wp--preset--font-family--${animatedTextFontFamily})`,
+              }),
+              fontWeight: animatedTextFontWeight,
+              fontStyle: animatedTextFontStyle,
+              fontSize: textFontSize,
+              ...(textLetterSpacing !== "normal" && {
+                letterSpacing: textLetterSpacing,
+              }),
+            }}
+          >
+            |
+          </span>
+        </TagName>
+      </div>
     </>
   );
 }

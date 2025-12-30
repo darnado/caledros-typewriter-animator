@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: Typewriter Animation Block
  * Plugin URI: https://caledrosforge.com/
@@ -32,7 +33,7 @@
  * with Typewriter Animation Block; if not, see <https://www.gnu.org/licenses/>.
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 
@@ -40,5 +41,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 define('TYPEWRITER_ANIMATION_BLOCK_BASE_FOLDER', plugin_dir_path(__FILE__));
 
 // Load core files
-require_once(TYPEWRITER_ANIMATION_BLOCK_BASE_FOLDER . 'core/block-category-loader.php');
-require_once(TYPEWRITER_ANIMATION_BLOCK_BASE_FOLDER . 'core/block-loader.php');
+require_once(TYPEWRITER_ANIMATION_BLOCK_BASE_FOLDER . 'core/loaders/block-category-loader.php');
+require_once(TYPEWRITER_ANIMATION_BLOCK_BASE_FOLDER . 'core/loaders/block-loader.php');
+require_once(TYPEWRITER_ANIMATION_BLOCK_BASE_FOLDER . 'core/loaders/css-styles-loader.php');
+
+// Load render callback
+require_once(TYPEWRITER_ANIMATION_BLOCK_BASE_FOLDER . 'src/blocks/typewriter-animation/render-callback.php');

@@ -24,9 +24,7 @@ import { __ } from "@wordpress/i18n";
 import "./style.css";
 import "./editor.css";
 import EditBlock from "./edit-block";
-import SaveBlock from "./save-block";
 
 registerBlockType(metadata.name, {
   edit: EditBlock,
-  save: SaveBlock,
 });

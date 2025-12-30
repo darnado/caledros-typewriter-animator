@@ -18,11 +18,16 @@
  * with Typewriter Animation Block; if not, see <https://www.gnu.org/licenses/>.
  */
 
-import { useBlockProps, InnerBlocks } from "@wordpress/block-editor";
-import { __ } from "@wordpress/i18n";
+/*Active tab in the Inspector Controls section*/
+.twab-active-tab {
+  color: #007cba;
+  font-weight: bold;
+  border-bottom: 2px solid #007cba;
+}
 
-export default function SaveBlock({ attributes }) {
-  // Block props
-  const blockProps = useBlockProps.save();
-  return <div {...blockProps}>Typewriter animation block</div>;
+/*Editor grid*/
+.twab-editor__grid {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  column-gap: 5px;
 }

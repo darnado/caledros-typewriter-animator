@@ -1,5 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 
@@ -32,16 +32,18 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return void Loads and registers the custom block.
  */
 
-function twab_block_loader() {
-    $twab_blocks = [    
-        ['block_name' => 'typewriter-animation']
+function twab_block_loader()
+{
+    $twab_blocks = [
+        ['block_name' => 'typewriter-animation', 'block_options' => ['render_callback' => 'twab_render_cb']]
     ];
 
-    foreach ( $twab_blocks as $twab_block ) {
+    foreach ($twab_blocks as $twab_block) {
         register_block_type(
-            TYPEWRITER_ANIMATION_BLOCK_BASE_FOLDER . 'build/blocks/' . $twab_block['block_name'], []
+            TYPEWRITER_ANIMATION_BLOCK_BASE_FOLDER . 'build/blocks/' . $twab_block['block_name'],
+            isset($twab_block['block_options']) ? $twab_block['block_options'] : []
         );
     }
 }
 
-add_action( 'init', 'twab_block_loader' );
+add_action('init', 'twab_block_loader');
