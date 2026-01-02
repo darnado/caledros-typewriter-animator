@@ -22,9 +22,10 @@ import { registerBlockType } from "@wordpress/blocks";
 import metadata from "./block.json";
 import { __ } from "@wordpress/i18n";
 import "./style.css";
-import "./editor.css";
 import EditBlock from "./edit-block";
+import blocksIcon from "../../assets/typewriter-icon";
 
 registerBlockType(metadata.name, {
+  icon: blocksIcon.icon,
   edit: EditBlock,
 });
