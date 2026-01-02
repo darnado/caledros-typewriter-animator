@@ -83,11 +83,19 @@ export default function EditBlock({ attributes, setAttributes }) {
 
   // Typewriter Animation effect
   useEffect(() => {
-    if (!rootBlockRef.current || !uniqueId) return;
+    if (
+      !rootBlockRef.current ||
+      !uniqueId ||
+      !animatedPhrases ||
+      animatedPhrases.length === 0
+    )
+      return;
 
-    const typewriterElement = rootBlockRef.current.querySelector(
+    const animatedTextElement = rootBlockRef.current.querySelector(
       `${tagName}.twab span#${uniqueId}`
     );
+
+    if (!animatedTextElement) return;
 
     let isCancelled = false;
 
@@ -95,32 +103,30 @@ export default function EditBlock({ attributes, setAttributes }) {
 
     let index = 0;
 
-    const loop = async () => {
+    const typewriterLoop = async () => {
+      let charIndex = 0;
+      let direction = 1; // 1 = typing, -1 = deleting
+
       while (!isCancelled) {
-        const word = animatedPhrases[index];
+        const activePhrase = animatedPhrases[index];
 
-        // Type forward
-        for (let i = 0; i < word.length && !isCancelled; i++) {
-          typewriterElement.innerText = word.slice(0, i + 1);
-          await wait(animationSpeed);
+        charIndex += direction;
+        animatedTextElement.innerText = activePhrase.slice(0, charIndex);
+
+        if (direction === 1 && charIndex === activePhrase.length) {
+          await wait(animationSpeed * 10);
+          direction = -1;
+        } else if (direction === -1 && charIndex === 0) {
+          await wait(animationSpeed * 10);
+          direction = 1;
+          index = index === animatedPhrases.length - 1 ? 0 : index + 1;
         }
 
-        await wait(animationSpeed * 10);
-        if (isCancelled) break;
-
-        // Type backward
-        for (let i = word.length; i > 0 && !isCancelled; i--) {
-          typewriterElement.innerText = word.slice(0, i - 1);
-          await wait(animationSpeed);
-        }
-
-        await wait(animationSpeed * 10);
-
-        index = (index + 1) % animatedPhrases.length;
+        await wait(animationSpeed);
       }
     };
 
-    loop();
+    typewriterLoop();
 
     // Cleanup to stop old loop
     return () => {

@@ -25,41 +25,71 @@ store("typewriter-animation", {
     onInit: () => {
       const context = getContext();
       const uniqueIdElement = `${context.uniqueId}`;
-      const animatedPhrases = `${context.animatedPhrases}`;
-      const animationSpeed = `${context.animationSpeed}`;
+      const animatedPhrases = context.animatedPhrases;
+      const animationSpeed = context.animationSpeed;
 
-      function waitAnimation(miliseconds) {
-        return new Promise((resolve) => setTimeout(resolve, miliseconds));
-      }
-
-      const typewriterPhrases = animatedPhrases.split(",");
-
-      const typewriterElement = document.getElementById(uniqueIdElement);
+      const animatedTextElement = document.getElementById(uniqueIdElement);
 
       let currentPhraseIndex = 0;
+      let cancelled = false;
+      let timeoutId;
+
+      if (
+        !animatedPhrases ||
+        animatedPhrases.length === 0 ||
+        !animatedTextElement
+      )
+        return;
+
+      // Disable typewriter for users who have disabled animations
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        animatedTextElement.innerText = animatedPhrases[0] || "";
+        return;
+      }
+
+      function waitAnimation(miliseconds) {
+        return new Promise(
+          (resolve) => (timeoutId = setTimeout(resolve, miliseconds))
+        );
+      }
 
       const typewriterLoop = async () => {
-        while (true) {
-          let currentWord = typewriterPhrases[currentPhraseIndex];
-          for (let i = 0; i < currentWord.length; i++) {
-            typewriterElement.innerText = currentWord.substring(0, i + 1);
-            await waitAnimation(animationSpeed);
-          }
-          await waitAnimation(animationSpeed * 10);
-          for (let i = currentWord.length; i > 0; i--) {
-            typewriterElement.innerText = currentWord.substring(0, i - 1);
-            await waitAnimation(animationSpeed);
-          }
-          await waitAnimation(animationSpeed * 10);
+        let charIndex = 0;
+        let direction = 1; // 1 = typing, -1 = deleting
 
-          // If we are pointing to the last element of the array
-          if (currentPhraseIndex === typewriterPhrases.length - 1) {
-            currentPhraseIndex = 0;
-          } else {
-            currentPhraseIndex++;
+        while (!cancelled) {
+          const activePhrase = animatedPhrases[currentPhraseIndex];
+
+          charIndex += direction;
+          animatedTextElement.innerText = activePhrase.slice(0, charIndex);
+
+          if (direction === 1 && charIndex === activePhrase.length) {
+            await waitAnimation(animationSpeed * 10);
+            direction = -1;
+          } else if (direction === -1 && charIndex === 0) {
+            await waitAnimation(animationSpeed * 10);
+            direction = 1;
+            currentPhraseIndex =
+              currentPhraseIndex === animatedPhrases.length - 1
+                ? 0
+                : currentPhraseIndex + 1;
           }
+
+          await waitAnimation(animationSpeed);
         }
       };
+
+      // Observer
+      const observer = new MutationObserver(() => {
+        if (!document.body.contains(animatedTextElement)) {
+          cancelled = true;
+          observer.disconnect();
+          if (timeoutId) clearTimeout(timeoutId);
+        }
+      });
+
+      observer.observe(document.body, { childList: true, subtree: true });
+
       typewriterLoop();
     },
   },
