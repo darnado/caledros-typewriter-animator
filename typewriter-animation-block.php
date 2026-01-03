@@ -47,3 +47,6 @@ require_once(TYPEWRITER_ANIMATION_BLOCK_BASE_FOLDER . 'core/loaders/css-styles-l
 
 // Load render callback
 require_once(TYPEWRITER_ANIMATION_BLOCK_BASE_FOLDER . 'src/blocks/typewriter-animation/render-callback.php');
+
+// Load translations
+require_once(TYPEWRITER_ANIMATION_BLOCK_BASE_FOLDER . 'core/loaders/load-translations.php');
