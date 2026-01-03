@@ -53,6 +53,7 @@ function twab_render_cb($attributes)
     $textFontSize = sanitize_text_field($attributes['textFontSize'] ?? '50px');
     $textLetterSpacing = sanitize_text_field($attributes['textLetterSpacing'] ?? 'normal');
     $tagName = sanitize_text_field($attributes['tagName'] ?? 'h2');
+    $pauseDuration = intval($attributes['pauseDuration'] ?? 1000);
 
     $allowed_tags = [
         'p',
@@ -79,7 +80,8 @@ function twab_render_cb($attributes)
     $wp_context = [
         "uniqueId" => $uniqueId,
         "animatedPhrases" => $animatedPhrases,
-        "animationSpeed" => $animationSpeed
+        "animationSpeed" => $animationSpeed,
+        "pauseDuration" => $pauseDuration
     ];
 
     $wp_context_json = htmlspecialchars(json_encode($wp_context), ENT_QUOTES, 'UTF-8');

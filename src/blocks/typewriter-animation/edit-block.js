@@ -33,6 +33,7 @@ import StaticTextTypographyGroupSettings from "./settings/static-text-typography
 import FontSizeSettings from "./settings/font-size-settings";
 import LetterSpacingSettings from "./settings/letter-spacing-settings";
 import TagNameSettings from "./settings/tag-name-settings";
+import PauseDurationSettings from "./settings/pause-duration-settings";
 
 // Global store used only at editor runtime (never saved in database)
 let uniqueIds = [];
@@ -55,6 +56,7 @@ export default function EditBlock({ attributes, setAttributes }) {
     textFontSize,
     textLetterSpacing,
     tagName,
+    pauseDuration,
   } = attributes;
 
   const rootBlockRef = useRef(null);
@@ -114,10 +116,10 @@ export default function EditBlock({ attributes, setAttributes }) {
         animatedTextElement.innerText = activePhrase.slice(0, charIndex);
 
         if (direction === 1 && charIndex === activePhrase.length) {
-          await wait(animationSpeed * 10);
+          await wait(pauseDuration);
           direction = -1;
         } else if (direction === -1 && charIndex === 0) {
-          await wait(animationSpeed * 10);
+          await wait(pauseDuration);
           direction = 1;
           index = index === animatedPhrases.length - 1 ? 0 : index + 1;
         }
@@ -143,6 +145,7 @@ export default function EditBlock({ attributes, setAttributes }) {
     staticTextFontStyle,
     staticTextFontWeight,
     tagName,
+    pauseDuration,
   ]);
 
   const blockProps = useBlockProps({ ref: rootBlockRef });
@@ -223,6 +226,10 @@ export default function EditBlock({ attributes, setAttributes }) {
                     attributes={attributes}
                     setAttributes={setAttributes}
                   ></AnimationSpeedSettings>
+                  <PauseDurationSettings
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                  ></PauseDurationSettings>
                   <TagNameSettings
                     attributes={attributes}
                     setAttributes={setAttributes}

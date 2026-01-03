@@ -27,6 +27,7 @@ store("typewriter-animation", {
       const uniqueIdElement = `${context.uniqueId}`;
       const animatedPhrases = context.animatedPhrases;
       const animationSpeed = context.animationSpeed;
+      const pauseDuration = context.pauseDuration;
 
       const animatedTextElement = document.getElementById(uniqueIdElement);
 
@@ -64,10 +65,10 @@ store("typewriter-animation", {
           animatedTextElement.innerText = activePhrase.slice(0, charIndex);
 
           if (direction === 1 && charIndex === activePhrase.length) {
-            await waitAnimation(animationSpeed * 10);
+            await waitAnimation(pauseDuration);
             direction = -1;
           } else if (direction === -1 && charIndex === 0) {
-            await waitAnimation(animationSpeed * 10);
+            await waitAnimation(pauseDuration);
             direction = 1;
             currentPhraseIndex =
               currentPhraseIndex === animatedPhrases.length - 1

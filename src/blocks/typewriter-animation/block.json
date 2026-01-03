@@ -76,6 +76,10 @@
     "tagName": {
       "type": "string",
       "default": "h2"
+    },
+    "pauseDuration": {
+      "type": "number",
+      "default": 1000
     }
   },
   "supports": {
