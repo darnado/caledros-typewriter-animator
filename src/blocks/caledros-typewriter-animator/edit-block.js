@@ -1,21 +1,21 @@
 /*
- * Typewriter Animation Block - A WordPress plugin
- * Copyright (C) 2025  David Arnado
+ * Caledros Typewriter Animator - A WordPress plugin
+ * Copyright (C) 2025 - 2026  David Arnado
  *
- * This file is part of Typewriter Animation Block.
+ * This file is part of Caledros Typewriter Animator.
  *
- * Typewriter Animation Block is free software; you can redistribute it and/or modify
+ * Caledros Typewriter Animator is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
- * Typewriter Animation Block is distributed in the hope that it will be useful,
+ * Caledros Typewriter Animator is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License along
- * with Typewriter Animation Block; if not, see <https://www.gnu.org/licenses/>.
+ * with Caledros Typewriter Animator; if not, see <https://www.gnu.org/licenses/>.
  */
 
 import { useBlockProps, InspectorControls } from "@wordpress/block-editor";
@@ -67,7 +67,7 @@ export default function EditBlock({ attributes, setAttributes }) {
 
   // Function to generate a persistent ID
   const generateId = () =>
-    `twab-${Math.random().toString(36).substring(2, 10)}`;
+    `ctwa-${Math.random().toString(36).substring(2, 10)}`;
 
   // Assign a unique ID only if:
   // - Block is newly created (uniqueId is missing)
@@ -94,7 +94,7 @@ export default function EditBlock({ attributes, setAttributes }) {
       return;
 
     const animatedTextElement = rootBlockRef.current.querySelector(
-      `${tagName}.twab span#${uniqueId}`
+      `${tagName}.ctwa span#${uniqueId}`
     );
 
     if (!animatedTextElement) return;
@@ -154,7 +154,7 @@ export default function EditBlock({ attributes, setAttributes }) {
     <>
       <InspectorControls>
         <TabPanel
-          activeClass="twab-active-tab"
+          activeClass="ctwa-active-tab"
           tabs={[
             {
               name: "content",
@@ -242,10 +242,10 @@ export default function EditBlock({ attributes, setAttributes }) {
         </TabPanel>
       </InspectorControls>
       <div {...blockProps}>
-        <TagName className="twab">
+        <TagName className="ctwa">
           {!hideStaticText && (
             <span
-              className="twab__static-text"
+              className="ctwa__static-text"
               style={{
                 color: staticTextColor,
                 ...(staticTextFontFamily !== "" && {
@@ -264,7 +264,7 @@ export default function EditBlock({ attributes, setAttributes }) {
           )}
           <span
             id={uniqueId}
-            className="twab__animation-text"
+            className="ctwa__animation-text"
             style={{
               color: animatedTextColor,
               ...(animatedTextFontFamily !== "" && {
@@ -279,7 +279,7 @@ export default function EditBlock({ attributes, setAttributes }) {
             }}
           ></span>
           <span
-            className="twab__cursor"
+            className="ctwa__cursor"
             style={{
               color: animatedTextColor,
               ...(animatedTextFontFamily !== "" && {

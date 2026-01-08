@@ -1,21 +1,21 @@
 /*
- * Typewriter Animation Block - A WordPress plugin
- * Copyright (C) 2025  David Arnado
+ * Caledros Typewriter Animator - A WordPress plugin
+ * Copyright (C) 2025 - 2026  David Arnado
  *
- * This file is part of Typewriter Animation Block.
+ * This file is part of Caledros Typewriter Animator.
  *
- * Typewriter Animation Block is free software; you can redistribute it and/or modify
+ * Caledros Typewriter Animator is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
- * Typewriter Animation Block is distributed in the hope that it will be useful,
+ * Caledros Typewriter Animator is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License along
- * with Typewriter Animation Block; if not, see <https://www.gnu.org/licenses/>.
+ * with Caledros Typewriter Animator; if not, see <https://www.gnu.org/licenses/>.
  */
 
 import { SelectControl } from "@wordpress/components";
@@ -28,8 +28,11 @@ export default function FontStyleSettings({
   getAvailableFontWeights,
   doesFontExist,
 }) {
-  const { staticTextFontFamily, staticTextFontStyle, staticTextFontWeight } =
-    attributes;
+  const {
+    animatedTextFontFamily,
+    animatedTextFontStyle,
+    animatedTextFontWeight,
+  } = attributes;
 
   // Default font styles
   const defaultFontStyles = [
@@ -38,7 +41,7 @@ export default function FontStyleSettings({
   ];
 
   // Create options array for the controller
-  const fontStyleOptions = getAvailableFontStyles(staticTextFontFamily)?.map(
+  const fontStyleOptions = getAvailableFontStyles(animatedTextFontFamily)?.map(
     (styleValue) => {
       return {
         label: `${styleValue[0].toUpperCase()}${styleValue.slice(1)}`,
@@ -51,27 +54,27 @@ export default function FontStyleSettings({
     <SelectControl
       __next40pxDefaultSize
       __nextHasNoMarginBottom
-      help={__("Select the font style.", "typewriter-animation-block")}
-      value={staticTextFontStyle}
+      help={__("Select the font style.", "caledros-typewriter-animator")}
+      value={animatedTextFontStyle}
       options={
         fontStyleOptions.length === 0 ? defaultFontStyles : fontStyleOptions
       }
       onChange={(newFontStyle) => {
-        const availableFontWeights = doesFontExist(staticTextFontFamily)
-          ? getAvailableFontWeights(staticTextFontFamily, newFontStyle)
+        const availableFontWeights = doesFontExist(animatedTextFontFamily)
+          ? getAvailableFontWeights(animatedTextFontFamily, newFontStyle)
           : [];
 
         const newFontWeight = availableFontWeights.includes(
-          staticTextFontWeight
+          animatedTextFontWeight
         )
-          ? staticTextFontWeight
+          ? animatedTextFontWeight
           : availableFontWeights[0];
 
         setAttributes({
-          staticTextFontStyle: newFontStyle,
-          ...(doesFontExist(staticTextFontFamily) &&
-            staticTextFontWeight !== newFontWeight && {
-              staticTextFontWeight: newFontWeight,
+          animatedTextFontStyle: newFontStyle,
+          ...(doesFontExist(animatedTextFontFamily) &&
+            animatedTextFontWeight !== newFontWeight && {
+              animatedTextFontWeight: newFontWeight,
             }),
         });
       }}

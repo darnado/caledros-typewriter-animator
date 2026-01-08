@@ -1,4 +1,4 @@
-=== Typewriter Animation Block ===
+=== Caledros Typewriter Animator ===
 
 Contributors: @darnado
 Tags: gutenberg, block editor, custom blocks
@@ -9,11 +9,11 @@ Requires PHP: 8.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
-Adds a typewriter animation block to the WordPress Gutenberg editor.
+Adds a custom typewriter animation block to the WordPress Gutenberg editor.
 
 == Description ==
 
-Typewriter Animation Block adds a dynamic typewriter-style text animation to the WordPress Gutenberg editor. With this block, you can easily create eye-catching animated text to enhance headings, banners, call-to-actions, or any content where you want to draw attention.
+Caledros Typewriter Animator adds a dynamic typewriter-style text animation to the WordPress Gutenberg editor. With this block, you can easily create eye-catching animated text to enhance headings, banners, call-to-actions, or any content where you want to draw attention.
 The block lets you combine static text with animated phrases, giving you full control over how your message appears and animates, no custom code required.
 
 ## Features
@@ -29,8 +29,8 @@ For more information about my projects, you can visit my website: [caledrosforge
 
 == Frequently Asked Questions ==
 
-= What is Typewriter Animation Block =
-Typewriter Animation Block is a WordPress plugin that adds a customizable typewriter-style animated text block to the Gutenberg editor.
+= What is Caledros Typewriter Animator =
+Caledros Typewriter Animator is a WordPress plugin that adds a customizable typewriter-style animated text block to the Gutenberg editor.
 It allows you to combine static text with animated phrases to create engaging and dynamic content without writing any code.
 
 = Do I need coding skills to use this plugin? =
@@ -38,7 +38,7 @@ No. The block is fully configurable through the Gutenberg editor interface.
 All settings (such as text content, colors, typography, and animation speed) can be adjusted visually.
 
 = Will this plugin slow down my website? =
-No. Typewriter Animation Block is lightweight and optimized to load only what is necessary for the animation.
+No. Caledros Typewriter Animator is lightweight and optimized to load only what is necessary for the animation.
 It follows WordPress best practices to ensure minimal impact on performance.
 
 = Can I customize the appearance of the animated text? =
@@ -53,7 +53,7 @@ You can also control the animation speed and choose whether the static text is v
 
 This changelog format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Also, this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-= 1.0.0 - 2025-12-29 =
+= 1.0.0 - 2026-01-07 =
 
 **Added**
 
@@ -62,11 +62,11 @@ This changelog format is based on [Keep a Changelog](https://keepachangelog.com/
 == Upgrade Notice ==
 
 = 1.0.0 =
-Welcome to the first release of Typewriter Animation Block! This version adds a new custom block to the Gutenberg editor.
+Welcome to the first release of Caledros Typewriter Animator! This version adds a new custom block to the Gutenberg editor.
 
 == Installation ==
 
-You have two easy ways to install the Typewriter Animation Block plugin:
+You have two easy ways to install the Caledros Typewriter Animator plugin:
 
 **Option 1: From Your WordPress Dashboard**
 
@@ -74,7 +74,7 @@ You have two easy ways to install the Typewriter Animation Block plugin:
 
 **2\.** Navigate to Plugins &#8594; Add Plugin.
 
-**3\.** In the Search Plugins box, type "Typewriter Animation Block".
+**3\.** In the Search Plugins box, type "Caledros Typewriter Animator".
 
 **4\.** Click Install Now, then Activate.
 

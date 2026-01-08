@@ -4,29 +4,29 @@ if (! defined('ABSPATH')) {
 }
 
 /**
- * Typewriter Animation Block - A WordPress plugin
- * Copyright (C) 2025  David Arnado
+ * Caledros Typewriter Animator - A WordPress plugin
+ * Copyright (C) 2025 - 2026  David Arnado
  * 
- * This file is part of Typewriter Animation Block.
+ * This file is part of Caledros Typewriter Animator.
  * 
- * Typewriter Animation Block is free software; you can redistribute it and/or modify
+ * Caledros Typewriter Animator is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  * 
- * Typewriter Animation Block is distributed in the hope that it will be useful,
+ * Caledros Typewriter Animator is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License along
- * with Typewriter Animation Block; if not, see <https://www.gnu.org/licenses/>.
+ * with Caledros Typewriter Animator; if not, see <https://www.gnu.org/licenses/>.
  */
 
 /**
- * Renders the Typewriter Animation block on the frontend.
+ * Renders the Caledros Typewriter Animator on the frontend.
  *
- * Generates the HTML markup for the typewriter animation block,
+ * Generates the HTML markup for the Caledros Typewriter Animator,
  * sanitizes block attributes, prepares the interactivity API,
  * and returns the buffered output for server-side rendering.
  *
@@ -34,7 +34,7 @@ if (! defined('ABSPATH')) {
  * @return string Rendered HTML markup for the block.
  */
 
-function twab_render_cb($attributes)
+function ctwa_render_cb($attributes)
 {
     // Block attributes
     $uniqueId = sanitize_text_field($attributes['uniqueId'] ?? '');
@@ -91,15 +91,15 @@ function twab_render_cb($attributes)
     ob_start();
 ?>
 
-    <div data-wp-interactive="typewriter-animation" data-wp-context='<?php echo esc_attr($wp_context_json); ?>' data-wp-init="callbacks.onInit">
-        <<?php echo esc_html($tagName); ?> class="twab">
+    <div data-wp-interactive="caledros-typewriter-animator" data-wp-context='<?php echo esc_attr($wp_context_json); ?>' data-wp-init="callbacks.onInit">
+        <<?php echo esc_html($tagName); ?> class="ctwa">
             <?php if (!$hideStaticText): ?>
-                <span class="twab__static-text" style="color: <?php echo esc_attr($staticTextColor); ?>; font-weight: <?php echo esc_attr($staticTextFontWeight); ?>; font-style: <?php echo esc_attr($staticTextFontStyle); ?> <?php if (($staticTextFontFamily !== "")) echo '; font-family: var(--wp--preset--font-family--' . esc_attr($staticTextFontFamily) . ')' ?>; font-size: <?php echo esc_attr($textFontSize); ?>; letter-spacing: <?php echo esc_attr($textLetterSpacing); ?>">
+                <span class="ctwa__static-text" style="color: <?php echo esc_attr($staticTextColor); ?>; font-weight: <?php echo esc_attr($staticTextFontWeight); ?>; font-style: <?php echo esc_attr($staticTextFontStyle); ?> <?php if (($staticTextFontFamily !== "")) echo '; font-family: var(--wp--preset--font-family--' . esc_attr($staticTextFontFamily) . ')' ?>; font-size: <?php echo esc_attr($textFontSize); ?>; letter-spacing: <?php echo esc_attr($textLetterSpacing); ?>">
                     <?php echo esc_html($staticText); ?>
                 </span>
             <?php endif; ?>
-            <span id="<?php echo esc_attr($uniqueId); ?>" class="twab__animation-text" style="color: <?php echo esc_attr($animatedTextColor); ?>; font-weight: <?php echo esc_attr($animatedTextFontWeight); ?>; font-style: <?php echo esc_attr($animatedTextFontStyle); ?> <?php if (($animatedTextFontFamily !== "")) echo '; font-family: var(--wp--preset--font-family--' . esc_attr($animatedTextFontFamily) . ')' ?>; font-size: <?php echo esc_attr($textFontSize); ?>; letter-spacing: <?php echo esc_attr($textLetterSpacing); ?>">
-            </span><span class="twab__cursor" style="color: <?php echo esc_attr($animatedTextColor); ?>; font-weight: <?php echo esc_attr($animatedTextFontWeight); ?>; font-style: <?php echo esc_attr($animatedTextFontStyle); ?> <?php if (($animatedTextFontFamily !== "")) echo '; font-family: var(--wp--preset--font-family--' . esc_attr($animatedTextFontFamily) . ')' ?>; font-size: <?php echo esc_attr($textFontSize); ?>; letter-spacing: <?php echo esc_attr($textLetterSpacing); ?>">|</span>
+            <span id="<?php echo esc_attr($uniqueId); ?>" class="ctwa__animation-text" style="color: <?php echo esc_attr($animatedTextColor); ?>; font-weight: <?php echo esc_attr($animatedTextFontWeight); ?>; font-style: <?php echo esc_attr($animatedTextFontStyle); ?> <?php if (($animatedTextFontFamily !== "")) echo '; font-family: var(--wp--preset--font-family--' . esc_attr($animatedTextFontFamily) . ')' ?>; font-size: <?php echo esc_attr($textFontSize); ?>; letter-spacing: <?php echo esc_attr($textLetterSpacing); ?>">
+            </span><span class="ctwa__cursor" style="color: <?php echo esc_attr($animatedTextColor); ?>; font-weight: <?php echo esc_attr($animatedTextFontWeight); ?>; font-style: <?php echo esc_attr($animatedTextFontStyle); ?> <?php if (($animatedTextFontFamily !== "")) echo '; font-family: var(--wp--preset--font-family--' . esc_attr($animatedTextFontFamily) . ')' ?>; font-size: <?php echo esc_attr($textFontSize); ?>; letter-spacing: <?php echo esc_attr($textLetterSpacing); ?>">|</span>
         </<?php echo esc_html($tagName); ?>>
     </div>
 <?php

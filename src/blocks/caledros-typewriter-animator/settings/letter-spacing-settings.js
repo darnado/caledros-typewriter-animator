@@ -1,21 +1,21 @@
 /*
- * Typewriter Animation Block - A WordPress plugin
- * Copyright (C) 2025  David Arnado
+ * Caledros Typewriter Animator - A WordPress plugin
+ * Copyright (C) 2025 - 2026  David Arnado
  *
- * This file is part of Typewriter Animation Block.
+ * This file is part of Caledros Typewriter Animator.
  *
- * Typewriter Animation Block is free software; you can redistribute it and/or modify
+ * Caledros Typewriter Animator is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
- * Typewriter Animation Block is distributed in the hope that it will be useful,
+ * Caledros Typewriter Animator is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License along
- * with Typewriter Animation Block; if not, see <https://www.gnu.org/licenses/>.
+ * with Caledros Typewriter Animator; if not, see <https://www.gnu.org/licenses/>.
  */
 
 import {
@@ -57,12 +57,12 @@ export default function LetterSpacingSettings({ attributes, setAttributes }) {
 
   return (
     <PanelBody
-      title={__("Letter spacing", "typewriter-animation-block")}
+      title={__("Letter spacing", "caledros-typewriter-animator")}
       initialOpen={false}
     >
       <ToggleControl
         __nextHasNoMarginBottom
-        label={__("Use normal letter spacing", "typewriter-animation-block")}
+        label={__("Use normal letter spacing", "caledros-typewriter-animator")}
         checked={useNormalLetterSpacing}
         onChange={() => {
           const temporalValue = useNormalLetterSpacing ? "0" : "normal";
@@ -75,13 +75,13 @@ export default function LetterSpacingSettings({ attributes, setAttributes }) {
         }}
       />
       {!useNormalLetterSpacing && (
-        <div className="twab-editor__grid">
+        <div className="ctwa-editor-grid">
           <RangeControl
             __next40pxDefaultSize
             __nextHasNoMarginBottom
             help={__(
               `Please select the custom letter spacing (${letterSpacingUnit}).`,
-              "typewriter-animation-block"
+              "caledros-typewriter-animator"
             )}
             value={parseFloat(textLetterSpacing) || 0}
             max={letterSpacingUnit === "px" ? 50 : 10}
