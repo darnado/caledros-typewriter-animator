@@ -14,6 +14,7 @@ Adds a custom typewriter animation block to the WordPress Gutenberg editor.
 == Description ==
 
 Caledros Typewriter Animator adds a dynamic typewriter-style text animation to the WordPress Gutenberg editor. With this block, you can easily create eye-catching animated text to enhance headings, banners, call-to-actions, or any content where you want to draw attention.
+
 The block lets you combine static text with animated phrases, giving you full control over how your message appears and animates, no custom code required.
 
 ## Features
@@ -21,7 +22,7 @@ The block lets you combine static text with animated phrases, giving you full co
 * Toggle the visibility of static text independently from the animation
 * Add and manage multiple animated phrases
 * Customize colors and typography separately for static and animated text
-* Adjust the typing and animation speed for the desired effect
+* Adjust the animation speed for the desired effect
 
 ## More Projects & Information
 
@@ -31,23 +32,29 @@ For more information about my projects, you can visit my website: [caledrosforge
 
 = What is Caledros Typewriter Animator =
 Caledros Typewriter Animator is a WordPress plugin that adds a customizable typewriter-style animated text block to the Gutenberg editor.
+
 It allows you to combine static text with animated phrases to create engaging and dynamic content without writing any code.
 
 = Do I need coding skills to use this plugin? =
 No. The block is fully configurable through the Gutenberg editor interface.
+
 All settings (such as text content, colors, typography, and animation speed) can be adjusted visually.
 
 = Will this plugin slow down my website? =
-No. Caledros Typewriter Animator is lightweight and optimized to load only what is necessary for the animation.
+No. Caledros Typewriter Animator is lightweight and optimized to load only what is necessary for the animation. 
+
 It follows WordPress best practices to ensure minimal impact on performance.
 
 = Can I customize the appearance of the animated text? =
-Yes. You can style the static and animated text separately, including colors and typography.
+Yes. You can style the static and animated text separately, including colors and typography. 
+
 You can also control the animation speed and choose whether the static text is visible or hidden.
 
 == Screenshots ==
 
-1. Block appearance in the Gutenberg editor.
+1. Content controls tab.
+2. Style controls tab.
+3. Additional controls tab.
 
 == Changelog ==
 
