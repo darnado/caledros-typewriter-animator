@@ -53,7 +53,7 @@ You can also control the animation speed and choose whether the static text is v
 
 This changelog format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Also, this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-= 1.0.0 - 2026-01-07 =
+= 1.0.0 - 2026-01-08 =
 
 **Added**
 

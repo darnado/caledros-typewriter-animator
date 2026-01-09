@@ -1,0 +1,99 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "caledros-typewriter-animator/caledros-typewriter-animator",
+  "title": "Caledros Typewriter Animator",
+  "category": "caledros-typewriter-animator",
+  "icon": "block-default",
+  "description": "A custom typewriter animation block.",
+  "keywords": [
+    "text, animation"
+  ],
+  "version": "1.0",
+  "textdomain": "caledros-typewriter-animator",
+  "editorScript": "file:./index.js",
+  "viewScriptModule": "file:./view.js",
+  "style": "file:./style-index.css",
+  "example": {},
+  "attributes": {
+    "uniqueId": {
+      "type": "string"
+    },
+    "staticText": {
+      "type": "string",
+      "default": "Crafting something "
+    },
+    "animatedPhrases": {
+      "type": "array",
+      "default": [
+        "incredible",
+        "engaging",
+        "unique",
+        "surprising"
+      ]
+    },
+    "hideStaticText": {
+      "type": "boolean",
+      "default": false
+    },
+    "animationSpeed": {
+      "type": "number",
+      "default": 100
+    },
+    "staticTextColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "animatedTextColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "animatedTextFontFamily": {
+      "type": "string",
+      "default": ""
+    },
+    "animatedTextFontWeight": {
+      "type": "number",
+      "default": 400
+    },
+    "animatedTextFontStyle": {
+      "type": "string",
+      "default": "normal"
+    },
+    "staticTextFontFamily": {
+      "type": "string",
+      "default": ""
+    },
+    "staticTextFontWeight": {
+      "type": "number",
+      "default": 400
+    },
+    "staticTextFontStyle": {
+      "type": "string",
+      "default": "normal"
+    },
+    "textFontSize": {
+      "type": "string",
+      "default": "50px"
+    },
+    "textLetterSpacing": {
+      "type": "string",
+      "default": "normal"
+    },
+    "tagName": {
+      "type": "string",
+      "default": "h2"
+    },
+    "pauseDuration": {
+      "type": "number",
+      "default": 1000
+    }
+  },
+  "supports": {
+    "align": false,
+    "alignWide": false,
+    "className": false,
+    "html": false,
+    "interactivity": true
+  }
+}
