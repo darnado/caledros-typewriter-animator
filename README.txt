@@ -3,7 +3,7 @@
 Contributors: @darnado
 Tags: gutenberg, block editor, custom blocks
 Requires at least: 6.9
-Tested up to: 6.9
+Tested up to: 7.0
 Stable tag: 1.0.0
 Requires PHP: 8.3
 License: GPLv2 or later
